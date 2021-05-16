@@ -13,7 +13,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "format": "prettier --write \"./**/*.{js,jsx,css}\""
+    "format": "prettier --write \"./**/*.{js,jsx,css,md,mdx,json}\""
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
