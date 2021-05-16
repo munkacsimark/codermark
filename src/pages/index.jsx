@@ -1,4 +1,5 @@
-import * as React from "react"
+import React from "react";
+import * as style from './index.module.css'
 
 // styles
 const pageStyles = {
@@ -138,6 +139,7 @@ const IndexPage = () => {
           🎉🎉🎉
         </span>
       </h1>
+      <span className={style.testStyle}>MACSKA</span>
       <p style={paragraphStyles}>
         Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
         update in real-time.{" "}
