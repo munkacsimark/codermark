@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
 					id
 					frontmatter {
 						slug
+						category
 						tags
 					}
 				}
@@ -22,30 +23,47 @@ exports.createPages = async ({ graphql, actions }) => {
 		}
 	`)
 	if (result.errors) {
-		reporter.panic('Failed to create pages for the posts/tags', result.errors)
+		reporter.panic(
+			'Failed to create pages for the posts/tag/category',
+			result.errors
+		)
 	}
 	const posts = result.data.allMdx.nodes
-	const tags = [
+
+	const existingCategories = [
+		...new Set(posts.map(post => post.frontmatter.category)),
+	]
+
+	const existingTags = [
 		...new Set(
-			posts.reduce((acc, post) => {
-				return acc.concat(post.frontmatter.tags)
-			}, [])
+			posts.reduce((acc, post) => acc.concat(post.frontmatter.tags), [])
 		),
 	]
 
 	posts.forEach(post => {
 		createPage({
 			path: post.frontmatter.slug,
-			component: path.resolve(`./src/templates/post.jsx`),
+			component: path.resolve(`./src/templates/postPage.jsx`),
 			context: {
 				id: post.id,
 			},
 		})
 	})
-	tags.forEach(tag => {
+
+	existingCategories.forEach(category => {
 		createPage({
-			path: `/tags/${tag}`,
-			component: path.resolve(`./src/templates/tags.jsx`),
+			path: `/category/${category}`,
+			component: path.resolve('./src/templates/categoryPage.jsx'),
+			context: {
+				category,
+			},
+		})
+	})
+
+	existingTags.forEach(tag => {
+		createPage({
+			path: `/tag/${tag}`,
+			component: path.resolve('./src/templates/tagPage.jsx'),
 			context: {
 				tag,
 			},

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-const Post = ({ data: { mdx: post } }) => {
+const PostPage = ({ data: { mdx: post } }) => {
 	return (
 		<div>
 			<GatsbyImage image={getImage(post.frontmatter.banner)} alt='meow' />
@@ -17,7 +17,7 @@ const Post = ({ data: { mdx: post } }) => {
 	)
 }
 
-export default Post
+export default PostPage
 
 export const pageQuery = graphql`
 	query Post($id: String!) {

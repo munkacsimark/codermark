@@ -1,41 +1,39 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-const Tags = ({
+const CategoryPage = ({
 	data: {
 		allMdx: { nodes: posts },
 	},
-	pageContext: { tag },
+	pageContext: { category },
 }) => {
 	return (
 		<>
-			<h1>TAG: {tag}</h1>
+			<h1>CATEGORY: {category}</h1>
 			{posts.map(post => (
 				<div key={post.id}>
 					<h2>{post.frontmatter.title}</h2>
-					<ul>
-						{post.frontmatter.tags.map(tag => (
-							<li key={tag}>{tag}</li>
-						))}
-					</ul>
+					<h3>cat.: {category}</h3>
 				</div>
 			))}
 		</>
 	)
 }
 
-export default Tags
+export default CategoryPage
 
 export const pageQuery = graphql`
-	query Tags($tag: String) {
+	query PostsByCategory($category: String) {
 		allMdx(
 			sort: { order: DESC, fields: frontmatter___date }
-			filter: { frontmatter: { tags: { in: [$tag] }, published: { eq: true } } }
+			filter: {
+				frontmatter: { category: { eq: $category }, published: { eq: true } }
+			}
 		) {
 			nodes {
 				id
 				frontmatter {
-					tags
+					category
 					title
 				}
 			}
