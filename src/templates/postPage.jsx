@@ -6,7 +6,10 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 const PostPage = ({ data: { mdx: post } }) => {
 	return (
 		<div>
-			<GatsbyImage image={getImage(post.frontmatter.banner)} alt='meow' />
+			<GatsbyImage
+				image={getImage(post.frontmatter.image)}
+				alt={post.frontmatter.imageAlt}
+			/>
 			<h1>{post.frontmatter.title}</h1>
 			<div>
 				<time>{post.frontmatter.date}</time>
@@ -24,7 +27,7 @@ export const pageQuery = graphql`
 		mdx(id: { eq: $id }) {
 			frontmatter {
 				title
-				banner {
+				image {
 					childImageSharp {
 						gatsbyImageData(
 							width: 200
@@ -33,6 +36,7 @@ export const pageQuery = graphql`
 						)
 					}
 				}
+				imageAlt
 				date(formatString: "MMMM Do, YYYY")
 				tags
 			}

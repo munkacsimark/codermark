@@ -15,7 +15,10 @@ const Blog = ({
 				<div key={post.id} style={{ border: '2px solid black' }}>
 					<Link to={post.frontmatter.slug}>OPEN</Link>
 					<h2>{post.frontmatter.title}</h2>
-					<GatsbyImage image={getImage(post.frontmatter.banner)} alt='meow' />
+					<GatsbyImage
+						image={getImage(post.frontmatter.image)}
+						alt={post.frontmatter.imageAlt}
+					/>
 					<p>Cat: {post.frontmatter.tags}</p>
 					<time>{post.frontmatter.date}</time>
 				</div>
@@ -35,7 +38,7 @@ export const pageQuery = graphql`
 					slug
 					tags
 					title
-					banner {
+					image {
 						childImageSharp {
 							gatsbyImageData(
 								width: 200
@@ -44,6 +47,7 @@ export const pageQuery = graphql`
 							)
 						}
 					}
+					imageAlt
 					tags
 					date(formatString: "YYYY - MMMM - Do", locale: "hu")
 					description
