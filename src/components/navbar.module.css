@@ -1,0 +1,36 @@
+.navBar {
+  width: 100%;
+  background-color: var(--black-50);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: var(--maxWidth);
+}
+.navLink {
+  font-weight: bold;
+  color: var(--gray);
+  transition: 0.2s;
+}
+.navLink:hover {
+  color: var(--white);
+  text-decoration: none;
+}
+.navLink:last-child {
+  margin-right: 0 !important;
+}
+.socialIcon {
+  display: inline-block;
+  color: var(--gray);
+  transition: 0.2s;
+}
+.socialIcon:hover {
+  color: var(--white);
+}
+.socialIcon:first-child {
+  margin-left: 0 !important;
+}

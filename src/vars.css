@@ -1,0 +1,11 @@
+:root {
+  --white: #fff;
+  --gray: #ececec;
+  --purple: #831187;
+  --black: #222831;
+  --navy: #30475e;
+  --blue: #507bbd;
+  --black-50: rgba(34, 40, 49, 0.5);
+
+  --maxWidth: 1440px;
+}

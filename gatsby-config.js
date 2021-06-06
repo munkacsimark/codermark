@@ -39,5 +39,12 @@ module.exports = {
 			},
 			__key: 'posts',
 		},
+		{
+			resolve: 'gatsby-plugin-typography',
+			options: {
+				pathToConfigModule: 'src/typography',
+				omitGoogleFont: true,
+			},
+		},
 	],
 }
