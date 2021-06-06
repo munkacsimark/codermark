@@ -12,12 +12,12 @@
   max-width: var(--maxWidth);
 }
 .navLink {
-  font-weight: bold;
+  font-weight: 700;
   color: var(--gray);
   transition: 0.2s;
 }
 .navLink:hover {
-  color: var(--white);
+  color: var(--blue);
   text-decoration: none;
 }
 .navLink:last-child {
@@ -29,7 +29,7 @@
   transition: 0.2s;
 }
 .socialIcon:hover {
-  color: var(--white);
+  color: var(--blue);
 }
 .socialIcon:first-child {
   margin-left: 0 !important;

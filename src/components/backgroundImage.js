@@ -39,6 +39,7 @@ const BackgroundImage = () => {
 		<>
 			{viewportData && rawUrl !== undefined && (
 				<>
+					<div className={style.fader} />
 					<img
 						className={style.backgroundImage}
 						alt='background picture'

@@ -55,7 +55,7 @@ const Navbar = () => {
 						</Link>
 					))}
 				</nav>
-				<nav>
+				<div>
 					{socialItems.map(({ url, title, icon }) => (
 						<a
 							style={{ marginLeft: rhythm(1) }}
@@ -68,10 +68,11 @@ const Navbar = () => {
 							<FontAwesomeIcon icon={icon} size='lg' />
 						</a>
 					))}
-				</nav>
+				</div>
 			</div>
 		</header>
 	)
 }
 
 export default Navbar
+export { socialItems }

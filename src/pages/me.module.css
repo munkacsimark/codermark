@@ -1,0 +1,23 @@
+.aboutBox {
+  max-width: var(--maxContentWidth);
+  background-color: var(--black-75);
+  border-radius: 6px;
+  color: var(--white);
+  font-weight: 200;
+}
+.socialBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.socialIcon {
+  display: inline-block;
+  color: var(--gray);
+  transition: 0.2s;
+}
+.socialIcon:hover {
+  color: var(--blue);
+}
+.socialIcon:first-child {
+  margin-left: 0 !important;
+}
