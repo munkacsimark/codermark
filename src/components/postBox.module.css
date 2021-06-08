@@ -1,0 +1,86 @@
+.postBox {
+  background-color: var(--white);
+  border-radius: 6px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  min-width: 310px;
+  width: 100%;
+  height: max-content;
+  box-shadow: 0 4px 4px var(--black-75);
+}
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 280px;
+}
+.image {
+  border-radius: 6px 6px 0 0;
+  width: 100%;
+  height: 100%;
+}
+.language {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black-75);
+  border-radius: 50%;
+  user-select: none;
+  cursor: default;
+}
+.labelsContainer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.category {
+  display: inline-block;
+  width: max-content;
+  color: var(--white);
+  background-color: var(--purple);
+  border-radius: 3px;
+}
+.category::before {
+  content: '📂 ';
+}
+.category:hover {
+  text-decoration: none;
+}
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  display: inline-block;
+  width: max-content;
+  color: var(--white);
+  background-color: var(--blue);
+  border-radius: 3px;
+}
+.tag::before {
+  content: '🏷 ';
+}
+.tag:last-child {
+  margin-right: 0;
+}
+.tag:hover {
+  text-decoration: none;
+}
+.title a {
+  color: var(--black);
+}
+.title a:hover {
+  text-decoration: none;
+}
+.time {
+  text-align: center;
+  display: block;
+}
+.hr {
+  border: none;
+  height: 1px;
+  background-color: var(--gray);
+  width: 100%;
+}

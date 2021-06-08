@@ -25,7 +25,7 @@ export default CategoryPage
 export const pageQuery = graphql`
 	query PostsByCategory($category: String) {
 		allMdx(
-			sort: { order: DESC, fields: frontmatter___date }
+			sort: { order: DESC, fields: frontmatter___created }
 			filter: {
 				frontmatter: { category: { eq: $category }, published: { eq: true } }
 			}

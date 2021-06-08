@@ -42,14 +42,14 @@ const BackgroundImage = () => {
 					<div className={style.fader} />
 					<img
 						className={style.backgroundImage}
-						alt='background picture'
+						alt='background'
 						src={`${rawUrl}?w=${viewportData.width}&h=${viewportData.height}&dpr=${viewportData.dpr}&orientation=${viewportData.orientation}&fit=crop&auto=format`}
 						onLoad={() => setHideThumb(true)}
 					/>
 					{!hideThumb && (
 						<img
 							className={style.backgroundImage}
-							alt='background picture'
+							alt='background'
 							src={thumbUrl}
 						/>
 					)}

@@ -10,7 +10,7 @@ exports.createPages = async ({ graphql, actions }) => {
 	const { createPage } = actions
 	const result = await graphql(`
 		query MyQuery {
-			allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+			allMdx(sort: { order: DESC, fields: frontmatter___created }) {
 				nodes {
 					id
 					frontmatter {

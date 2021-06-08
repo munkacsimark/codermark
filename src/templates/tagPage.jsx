@@ -29,7 +29,7 @@ export default TagPage
 export const pageQuery = graphql`
 	query PostsByTag($tag: String) {
 		allMdx(
-			sort: { order: DESC, fields: frontmatter___date }
+			sort: { order: DESC, fields: frontmatter___created }
 			filter: { frontmatter: { tags: { in: [$tag] }, published: { eq: true } } }
 		) {
 			nodes {

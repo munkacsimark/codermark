@@ -1,28 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { Link } from 'gatsby'
+import Layout from '../components/layout'
+import { rhythm } from '../typography'
+import BigTitle from '../components/bigTitle'
+import PostBox from '../components/postBox'
+import views from '../views'
+import * as style from './index.module.css'
 
 const Index = ({
 	data: {
 		allMdx: { nodes: posts },
 	},
 }) => {
+	const [view, setView] = useState(views.DESKTOP)
+
+	useEffect(() => {
+		const mediaQueryDesktop = window.matchMedia('(min-width: 1025px)')
+		const mediaQueryTablet = window.matchMedia(
+			'(min-width: 769px) and (max-width: 1024px)'
+		)
+		const mediaQueryMobile = window.matchMedia('(max-width: 768px)')
+
+		const handleDesktopChange = event => {
+			if (event.target.matches) setView(views.DESKTOP)
+		}
+		const handleTabletChange = event => {
+			if (event.target.matches) setView(views.TABLET)
+		}
+		const handleMobileChange = event => {
+			if (event.target.matches) setView(views.MOBILE)
+		}
+
+		mediaQueryDesktop.addEventListener('change', handleDesktopChange)
+		mediaQueryTablet.addEventListener('change', handleTabletChange)
+		mediaQueryMobile.addEventListener('change', handleMobileChange)
+		return () => {
+			mediaQueryDesktop.removeEventListener('change', handleDesktopChange)
+			mediaQueryTablet.removeEventListener('change', handleTabletChange)
+			mediaQueryMobile.removeEventListener('change', handleMobileChange)
+		}
+	}, [])
+
 	return (
 		<>
-			<div>Hello blog</div>
-			{posts.map(post => (
-				<div key={post.id} style={{ border: '2px solid black' }}>
-					<Link to={post.frontmatter.slug}>OPEN</Link>
-					<h2>{post.frontmatter.title}</h2>
-					<GatsbyImage
-						image={getImage(post.frontmatter.image)}
-						alt={post.frontmatter.imageAlt}
-					/>
-					<p>Cat: {post.frontmatter.tags}</p>
-					<time>{post.frontmatter.date}</time>
+			<Layout>
+				<BigTitle
+					showSubtitle
+					style={{
+						margin: `${rhythm(view === views.MOBILE ? 1 : 2)} 0`,
+					}}
+				/>
+				<div className={style.postContainer}>
+					{posts.map(post => (
+						<PostBox
+							key={post.id}
+							postData={post.frontmatter}
+							viewType={view}
+						/>
+					))}
 				</div>
-			))}
+			</Layout>
 		</>
 	)
 }
@@ -31,7 +68,7 @@ export default Index
 
 export const pageQuery = graphql`
 	query LastPosts {
-		allMdx(sort: { order: DESC, fields: frontmatter___date }, limit: 10) {
+		allMdx(sort: { order: DESC, fields: frontmatter___created }, limit: 12) {
 			nodes {
 				id
 				frontmatter {
@@ -41,18 +78,20 @@ export const pageQuery = graphql`
 					image {
 						childImageSharp {
 							gatsbyImageData(
-								width: 200
+								width: 400
 								placeholder: BLURRED
 								formats: [AUTO, WEBP, AVIF]
 							)
 						}
 					}
 					imageAlt
+					category
 					tags
-					date(formatString: "YYYY - MMMM - Do", locale: "hu")
+					created
+					updated
 					description
 					published
-					updated
+					language
 				}
 			}
 		}

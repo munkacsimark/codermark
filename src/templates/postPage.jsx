@@ -37,7 +37,8 @@ export const pageQuery = graphql`
 					}
 				}
 				imageAlt
-				date(formatString: "MMMM Do, YYYY")
+				created
+				updated
 				tags
 			}
 			body
