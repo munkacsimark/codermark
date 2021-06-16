@@ -25,6 +25,8 @@ const PostBox = ({ postData, viewType }) => {
 		[views.MOBILE]: '100%',
 	}
 
+	console.log(image)
+
 	return (
 		<div
 			lang={language}
@@ -63,6 +65,9 @@ const PostBox = ({ postData, viewType }) => {
 						style={{
 							padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
 						}}>
+						<span role='img' aria-label='folder'>
+							📂
+						</span>{' '}
 						{category}
 					</Link>
 					<div
@@ -77,6 +82,9 @@ const PostBox = ({ postData, viewType }) => {
 									padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
 									marginRight: rhythm(0.5),
 								}}>
+								<span role='img' aria-label='tag'>
+									🏷
+								</span>{' '}
 								{tag}
 							</Link>
 						))}
@@ -87,9 +95,7 @@ const PostBox = ({ postData, viewType }) => {
 				<Link to={slug}>{title}</Link>
 			</h3>
 			<hr className={style.hr} />
-			<p className={style.description} style={{ padding: `0 ${rhythm(1)}` }}>
-				{description}
-			</p>
+			<p style={{ padding: `0 ${rhythm(1)}` }}>{description}</p>
 			<hr className={style.hr} />
 			<time
 				className={style.time}

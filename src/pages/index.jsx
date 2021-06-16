@@ -86,7 +86,6 @@ export const pageQuery = graphql`
 					}
 					imageAlt
 					category
-					tags
 					created
 					updated
 					description

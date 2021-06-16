@@ -521,9 +521,8 @@ type MdxEdge {
 }
 
 type MdxFrontmatter {
-    banner: File
     category: String
-    date(
+    created(
         "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
         difference: String,
         "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
@@ -534,6 +533,9 @@ type MdxFrontmatter {
         locale: String
     ): Date
     description: String
+    image: File
+    imageAlt: String
+    language: String
     published: Boolean
     slug: String
     tags: [String]
@@ -596,7 +598,7 @@ type Query {
     mdx(body: StringQueryOperatorInput, children: NodeFilterListInput, excerpt: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, mdxAST: JSONQueryOperatorInput, parent: NodeFilterInput, rawBody: StringQueryOperatorInput, slug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput): Mdx
     site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
-    siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, apiRoute: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, parent: NodeFilterInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
+    siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
     sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
     sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
 }
@@ -687,13 +689,15 @@ type SiteEdge {
 
 type SiteFunction implements Node {
     absoluteCompiledFilePath: String!
-    apiRoute: String!
     children: [Node!]!
+    functionRoute: String!
     id: ID!
     internal: Internal!
     matchPath: String
-    originalFilePath: String!
+    originalAbsoluteFilePath: String!
+    originalRelativeFilePath: String!
     parent: Node
+    pluginName: String!
     relativeCompiledFilePath: String!
 }
 
@@ -762,6 +766,7 @@ type SitePageConnection {
 }
 
 type SitePageContext {
+    category: String
     id: String
     tag: String
 }
@@ -871,9 +876,11 @@ type SitePluginPluginOptions {
     lessBabel: Boolean
     mediaTypes: [String]
     name: String
+    omitGoogleFont: Boolean
     output: String
     path: String
     pathCheck: Boolean
+    pathToConfigModule: String
     query: String
     root: String
     stripMetadata: Boolean
@@ -1107,47 +1114,49 @@ enum FileFieldsEnum {
     childMdx___children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childMdx___fileAbsolutePath
-    childMdx___frontmatter___banner___absolutePath
-    childMdx___frontmatter___banner___accessTime
-    childMdx___frontmatter___banner___atime
-    childMdx___frontmatter___banner___atimeMs
-    childMdx___frontmatter___banner___base
-    childMdx___frontmatter___banner___birthTime
-    childMdx___frontmatter___banner___birthtime
-    childMdx___frontmatter___banner___birthtimeMs
-    childMdx___frontmatter___banner___blksize
-    childMdx___frontmatter___banner___blocks
-    childMdx___frontmatter___banner___changeTime
-    childMdx___frontmatter___banner___children
-    childMdx___frontmatter___banner___childrenImageSharp
-    childMdx___frontmatter___banner___childrenMdx
-    childMdx___frontmatter___banner___ctime
-    childMdx___frontmatter___banner___ctimeMs
-    childMdx___frontmatter___banner___dev
-    childMdx___frontmatter___banner___dir
-    childMdx___frontmatter___banner___ext
-    childMdx___frontmatter___banner___extension
-    childMdx___frontmatter___banner___gid
-    childMdx___frontmatter___banner___id
-    childMdx___frontmatter___banner___ino
-    childMdx___frontmatter___banner___mode
-    childMdx___frontmatter___banner___modifiedTime
-    childMdx___frontmatter___banner___mtime
-    childMdx___frontmatter___banner___mtimeMs
-    childMdx___frontmatter___banner___name
-    childMdx___frontmatter___banner___nlink
-    childMdx___frontmatter___banner___prettySize
-    childMdx___frontmatter___banner___publicURL
-    childMdx___frontmatter___banner___rdev
-    childMdx___frontmatter___banner___relativeDirectory
-    childMdx___frontmatter___banner___relativePath
-    childMdx___frontmatter___banner___root
-    childMdx___frontmatter___banner___size
-    childMdx___frontmatter___banner___sourceInstanceName
-    childMdx___frontmatter___banner___uid
     childMdx___frontmatter___category
-    childMdx___frontmatter___date
+    childMdx___frontmatter___created
     childMdx___frontmatter___description
+    childMdx___frontmatter___imageAlt
+    childMdx___frontmatter___image___absolutePath
+    childMdx___frontmatter___image___accessTime
+    childMdx___frontmatter___image___atime
+    childMdx___frontmatter___image___atimeMs
+    childMdx___frontmatter___image___base
+    childMdx___frontmatter___image___birthTime
+    childMdx___frontmatter___image___birthtime
+    childMdx___frontmatter___image___birthtimeMs
+    childMdx___frontmatter___image___blksize
+    childMdx___frontmatter___image___blocks
+    childMdx___frontmatter___image___changeTime
+    childMdx___frontmatter___image___children
+    childMdx___frontmatter___image___childrenImageSharp
+    childMdx___frontmatter___image___childrenMdx
+    childMdx___frontmatter___image___ctime
+    childMdx___frontmatter___image___ctimeMs
+    childMdx___frontmatter___image___dev
+    childMdx___frontmatter___image___dir
+    childMdx___frontmatter___image___ext
+    childMdx___frontmatter___image___extension
+    childMdx___frontmatter___image___gid
+    childMdx___frontmatter___image___id
+    childMdx___frontmatter___image___ino
+    childMdx___frontmatter___image___mode
+    childMdx___frontmatter___image___modifiedTime
+    childMdx___frontmatter___image___mtime
+    childMdx___frontmatter___image___mtimeMs
+    childMdx___frontmatter___image___name
+    childMdx___frontmatter___image___nlink
+    childMdx___frontmatter___image___prettySize
+    childMdx___frontmatter___image___publicURL
+    childMdx___frontmatter___image___rdev
+    childMdx___frontmatter___image___relativeDirectory
+    childMdx___frontmatter___image___relativePath
+    childMdx___frontmatter___image___root
+    childMdx___frontmatter___image___size
+    childMdx___frontmatter___image___sourceInstanceName
+    childMdx___frontmatter___image___uid
+    childMdx___frontmatter___language
     childMdx___frontmatter___published
     childMdx___frontmatter___slug
     childMdx___frontmatter___tags
@@ -1279,47 +1288,49 @@ enum FileFieldsEnum {
     childrenMdx___children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childrenMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     childrenMdx___fileAbsolutePath
-    childrenMdx___frontmatter___banner___absolutePath
-    childrenMdx___frontmatter___banner___accessTime
-    childrenMdx___frontmatter___banner___atime
-    childrenMdx___frontmatter___banner___atimeMs
-    childrenMdx___frontmatter___banner___base
-    childrenMdx___frontmatter___banner___birthTime
-    childrenMdx___frontmatter___banner___birthtime
-    childrenMdx___frontmatter___banner___birthtimeMs
-    childrenMdx___frontmatter___banner___blksize
-    childrenMdx___frontmatter___banner___blocks
-    childrenMdx___frontmatter___banner___changeTime
-    childrenMdx___frontmatter___banner___children
-    childrenMdx___frontmatter___banner___childrenImageSharp
-    childrenMdx___frontmatter___banner___childrenMdx
-    childrenMdx___frontmatter___banner___ctime
-    childrenMdx___frontmatter___banner___ctimeMs
-    childrenMdx___frontmatter___banner___dev
-    childrenMdx___frontmatter___banner___dir
-    childrenMdx___frontmatter___banner___ext
-    childrenMdx___frontmatter___banner___extension
-    childrenMdx___frontmatter___banner___gid
-    childrenMdx___frontmatter___banner___id
-    childrenMdx___frontmatter___banner___ino
-    childrenMdx___frontmatter___banner___mode
-    childrenMdx___frontmatter___banner___modifiedTime
-    childrenMdx___frontmatter___banner___mtime
-    childrenMdx___frontmatter___banner___mtimeMs
-    childrenMdx___frontmatter___banner___name
-    childrenMdx___frontmatter___banner___nlink
-    childrenMdx___frontmatter___banner___prettySize
-    childrenMdx___frontmatter___banner___publicURL
-    childrenMdx___frontmatter___banner___rdev
-    childrenMdx___frontmatter___banner___relativeDirectory
-    childrenMdx___frontmatter___banner___relativePath
-    childrenMdx___frontmatter___banner___root
-    childrenMdx___frontmatter___banner___size
-    childrenMdx___frontmatter___banner___sourceInstanceName
-    childrenMdx___frontmatter___banner___uid
     childrenMdx___frontmatter___category
-    childrenMdx___frontmatter___date
+    childrenMdx___frontmatter___created
     childrenMdx___frontmatter___description
+    childrenMdx___frontmatter___imageAlt
+    childrenMdx___frontmatter___image___absolutePath
+    childrenMdx___frontmatter___image___accessTime
+    childrenMdx___frontmatter___image___atime
+    childrenMdx___frontmatter___image___atimeMs
+    childrenMdx___frontmatter___image___base
+    childrenMdx___frontmatter___image___birthTime
+    childrenMdx___frontmatter___image___birthtime
+    childrenMdx___frontmatter___image___birthtimeMs
+    childrenMdx___frontmatter___image___blksize
+    childrenMdx___frontmatter___image___blocks
+    childrenMdx___frontmatter___image___changeTime
+    childrenMdx___frontmatter___image___children
+    childrenMdx___frontmatter___image___childrenImageSharp
+    childrenMdx___frontmatter___image___childrenMdx
+    childrenMdx___frontmatter___image___ctime
+    childrenMdx___frontmatter___image___ctimeMs
+    childrenMdx___frontmatter___image___dev
+    childrenMdx___frontmatter___image___dir
+    childrenMdx___frontmatter___image___ext
+    childrenMdx___frontmatter___image___extension
+    childrenMdx___frontmatter___image___gid
+    childrenMdx___frontmatter___image___id
+    childrenMdx___frontmatter___image___ino
+    childrenMdx___frontmatter___image___mode
+    childrenMdx___frontmatter___image___modifiedTime
+    childrenMdx___frontmatter___image___mtime
+    childrenMdx___frontmatter___image___mtimeMs
+    childrenMdx___frontmatter___image___name
+    childrenMdx___frontmatter___image___nlink
+    childrenMdx___frontmatter___image___prettySize
+    childrenMdx___frontmatter___image___publicURL
+    childrenMdx___frontmatter___image___rdev
+    childrenMdx___frontmatter___image___relativeDirectory
+    childrenMdx___frontmatter___image___relativePath
+    childrenMdx___frontmatter___image___root
+    childrenMdx___frontmatter___image___size
+    childrenMdx___frontmatter___image___sourceInstanceName
+    childrenMdx___frontmatter___image___uid
+    childrenMdx___frontmatter___language
     childrenMdx___frontmatter___published
     childrenMdx___frontmatter___slug
     childrenMdx___frontmatter___tags
@@ -1687,89 +1698,91 @@ enum MdxFieldsEnum {
     children___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
     fileAbsolutePath
-    frontmatter___banner___absolutePath
-    frontmatter___banner___accessTime
-    frontmatter___banner___atime
-    frontmatter___banner___atimeMs
-    frontmatter___banner___base
-    frontmatter___banner___birthTime
-    frontmatter___banner___birthtime
-    frontmatter___banner___birthtimeMs
-    frontmatter___banner___blksize
-    frontmatter___banner___blocks
-    frontmatter___banner___changeTime
-    frontmatter___banner___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___body
-    frontmatter___banner___childMdx___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___fileAbsolutePath
-    frontmatter___banner___childMdx___headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___mdxAST @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___rawBody
-    frontmatter___banner___childMdx___slug
-    frontmatter___banner___childMdx___tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childMdx___timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___children
-    frontmatter___banner___childrenImageSharp
-    frontmatter___banner___childrenImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx
-    frontmatter___banner___childrenMdx___body
-    frontmatter___banner___childrenMdx___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___fileAbsolutePath
-    frontmatter___banner___childrenMdx___headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___mdxAST @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___rawBody
-    frontmatter___banner___childrenMdx___slug
-    frontmatter___banner___childrenMdx___tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___childrenMdx___timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    frontmatter___banner___children___children
-    frontmatter___banner___children___id
-    frontmatter___banner___ctime
-    frontmatter___banner___ctimeMs
-    frontmatter___banner___dev
-    frontmatter___banner___dir
-    frontmatter___banner___ext
-    frontmatter___banner___extension
-    frontmatter___banner___gid
-    frontmatter___banner___id
-    frontmatter___banner___ino
-    frontmatter___banner___internal___content
-    frontmatter___banner___internal___contentDigest
-    frontmatter___banner___internal___description
-    frontmatter___banner___internal___fieldOwners
-    frontmatter___banner___internal___ignoreType
-    frontmatter___banner___internal___mediaType
-    frontmatter___banner___internal___owner
-    frontmatter___banner___internal___type
-    frontmatter___banner___mode
-    frontmatter___banner___modifiedTime
-    frontmatter___banner___mtime
-    frontmatter___banner___mtimeMs
-    frontmatter___banner___name
-    frontmatter___banner___nlink
-    frontmatter___banner___parent___children
-    frontmatter___banner___parent___id
-    frontmatter___banner___prettySize
-    frontmatter___banner___publicURL
-    frontmatter___banner___rdev
-    frontmatter___banner___relativeDirectory
-    frontmatter___banner___relativePath
-    frontmatter___banner___root
-    frontmatter___banner___size
-    frontmatter___banner___sourceInstanceName
-    frontmatter___banner___uid
     frontmatter___category
-    frontmatter___date
+    frontmatter___created
     frontmatter___description
+    frontmatter___imageAlt
+    frontmatter___image___absolutePath
+    frontmatter___image___accessTime
+    frontmatter___image___atime
+    frontmatter___image___atimeMs
+    frontmatter___image___base
+    frontmatter___image___birthTime
+    frontmatter___image___birthtime
+    frontmatter___image___birthtimeMs
+    frontmatter___image___blksize
+    frontmatter___image___blocks
+    frontmatter___image___changeTime
+    frontmatter___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___body
+    frontmatter___image___childMdx___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___fileAbsolutePath
+    frontmatter___image___childMdx___headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___mdxAST @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___rawBody
+    frontmatter___image___childMdx___slug
+    frontmatter___image___childMdx___tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childMdx___timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___children
+    frontmatter___image___childrenImageSharp
+    frontmatter___image___childrenImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx
+    frontmatter___image___childrenMdx___body
+    frontmatter___image___childrenMdx___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___excerpt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___fileAbsolutePath
+    frontmatter___image___childrenMdx___headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___mdxAST @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___rawBody
+    frontmatter___image___childrenMdx___slug
+    frontmatter___image___childrenMdx___tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___childrenMdx___timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    frontmatter___image___children___children
+    frontmatter___image___children___id
+    frontmatter___image___ctime
+    frontmatter___image___ctimeMs
+    frontmatter___image___dev
+    frontmatter___image___dir
+    frontmatter___image___ext
+    frontmatter___image___extension
+    frontmatter___image___gid
+    frontmatter___image___id
+    frontmatter___image___ino
+    frontmatter___image___internal___content
+    frontmatter___image___internal___contentDigest
+    frontmatter___image___internal___description
+    frontmatter___image___internal___fieldOwners
+    frontmatter___image___internal___ignoreType
+    frontmatter___image___internal___mediaType
+    frontmatter___image___internal___owner
+    frontmatter___image___internal___type
+    frontmatter___image___mode
+    frontmatter___image___modifiedTime
+    frontmatter___image___mtime
+    frontmatter___image___mtimeMs
+    frontmatter___image___name
+    frontmatter___image___nlink
+    frontmatter___image___parent___children
+    frontmatter___image___parent___id
+    frontmatter___image___prettySize
+    frontmatter___image___publicURL
+    frontmatter___image___rdev
+    frontmatter___image___relativeDirectory
+    frontmatter___image___relativePath
+    frontmatter___image___root
+    frontmatter___image___size
+    frontmatter___image___sourceInstanceName
+    frontmatter___image___uid
+    frontmatter___language
     frontmatter___published
     frontmatter___slug
     frontmatter___tags
@@ -2033,7 +2046,6 @@ enum SiteFieldsEnum {
 
 enum SiteFunctionFieldsEnum {
     absoluteCompiledFilePath
-    apiRoute
     children
     children___children
     children___children___children
@@ -2073,6 +2085,7 @@ enum SiteFunctionFieldsEnum {
     children___parent___internal___type
     children___parent___parent___children
     children___parent___parent___id
+    functionRoute
     id
     internal___content
     internal___contentDigest
@@ -2083,7 +2096,8 @@ enum SiteFunctionFieldsEnum {
     internal___owner
     internal___type
     matchPath
-    originalFilePath
+    originalAbsoluteFilePath
+    originalRelativeFilePath
     parent___children
     parent___children___children
     parent___children___children___children
@@ -2122,6 +2136,7 @@ enum SiteFunctionFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
+    pluginName
     relativeCompiledFilePath
 }
 
@@ -2167,6 +2182,7 @@ enum SitePageFieldsEnum {
     children___parent___parent___id
     component
     componentChunkName
+    context___category
     context___id
     context___tag
     id
@@ -2297,9 +2313,11 @@ enum SitePageFieldsEnum {
     pluginCreator___pluginOptions___lessBabel
     pluginCreator___pluginOptions___mediaTypes
     pluginCreator___pluginOptions___name
+    pluginCreator___pluginOptions___omitGoogleFont
     pluginCreator___pluginOptions___output
     pluginCreator___pluginOptions___path
     pluginCreator___pluginOptions___pathCheck
+    pluginCreator___pluginOptions___pathToConfigModule
     pluginCreator___pluginOptions___query
     pluginCreator___pluginOptions___root
     pluginCreator___pluginOptions___stripMetadata
@@ -2434,9 +2452,11 @@ enum SitePluginFieldsEnum {
     pluginOptions___lessBabel
     pluginOptions___mediaTypes
     pluginOptions___name
+    pluginOptions___omitGoogleFont
     pluginOptions___output
     pluginOptions___path
     pluginOptions___pathCheck
+    pluginOptions___pathToConfigModule
     pluginOptions___query
     pluginOptions___root
     pluginOptions___stripMetadata
@@ -2718,10 +2738,12 @@ input MdxFilterListInput {
 }
 
 input MdxFrontmatterFilterInput {
-    banner: FileFilterInput
     category: StringQueryOperatorInput
-    date: DateQueryOperatorInput
+    created: DateQueryOperatorInput
     description: StringQueryOperatorInput
+    image: FileFilterInput
+    imageAlt: StringQueryOperatorInput
+    language: StringQueryOperatorInput
     published: BooleanQueryOperatorInput
     slug: StringQueryOperatorInput
     tags: StringQueryOperatorInput
@@ -2805,13 +2827,15 @@ input SiteFilterInput {
 
 input SiteFunctionFilterInput {
     absoluteCompiledFilePath: StringQueryOperatorInput
-    apiRoute: StringQueryOperatorInput
     children: NodeFilterListInput
+    functionRoute: StringQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     matchPath: StringQueryOperatorInput
-    originalFilePath: StringQueryOperatorInput
+    originalAbsoluteFilePath: StringQueryOperatorInput
+    originalRelativeFilePath: StringQueryOperatorInput
     parent: NodeFilterInput
+    pluginName: StringQueryOperatorInput
     relativeCompiledFilePath: StringQueryOperatorInput
 }
 
@@ -2821,6 +2845,7 @@ input SiteFunctionSortInput {
 }
 
 input SitePageContextFilterInput {
+    category: StringQueryOperatorInput
     id: StringQueryOperatorInput
     tag: StringQueryOperatorInput
 }
@@ -2921,9 +2946,11 @@ input SitePluginPluginOptionsFilterInput {
     lessBabel: BooleanQueryOperatorInput
     mediaTypes: StringQueryOperatorInput
     name: StringQueryOperatorInput
+    omitGoogleFont: BooleanQueryOperatorInput
     output: StringQueryOperatorInput
     path: StringQueryOperatorInput
     pathCheck: BooleanQueryOperatorInput
+    pathToConfigModule: StringQueryOperatorInput
     query: StringQueryOperatorInput
     root: StringQueryOperatorInput
     stripMetadata: BooleanQueryOperatorInput

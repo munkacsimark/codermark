@@ -42,9 +42,6 @@
   background-color: var(--purple);
   border-radius: 3px;
 }
-.category::before {
-  content: '📂 ';
-}
 .category:hover {
   text-decoration: none;
 }
@@ -58,9 +55,6 @@
   color: var(--white);
   background-color: var(--blue);
   border-radius: 3px;
-}
-.tag::before {
-  content: '🏷 ';
 }
 .tag:last-child {
   margin-right: 0;

@@ -4,3 +4,10 @@
 body {
   background-color: var(--full-black);
 }
+pre {
+  overflow: auto;
+  background-color: var(--black);
+  border-radius: 6px;
+  color: var(--white);
+  padding: 8px 16px;
+}
