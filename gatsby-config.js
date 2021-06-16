@@ -1,3 +1,5 @@
+const a11yEmoji = require('@fec/remark-a11y-emoji')
+
 module.exports = {
 	siteMetadata: {
 		title: 'codermark',
@@ -12,7 +14,12 @@ module.exports = {
 				icon: 'src/images/icon.png',
 			},
 		},
-		'gatsby-plugin-mdx',
+		{
+			resolve: 'gatsby-plugin-mdx',
+			options: {
+				remarkPlugins: [a11yEmoji],
+			},
+		},
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
 		{

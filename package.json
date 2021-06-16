@@ -41,6 +41,7 @@
     "typography-theme-github": "^0.16.19"
   },
   "devDependencies": {
+    "@fec/remark-a11y-emoji": "^3.1.0",
     "prettier": "^2.3.0"
   }
 }
