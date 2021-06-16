@@ -43,12 +43,14 @@ const PostBox = ({ postData, viewType }) => {
 						alt={imageAlt}
 					/>
 				</Link>
-				<div
+				<span
+					role='img'
+					aria-label={language === 'hu' ? 'hungarian' : 'english'}
+					title={language === 'hu' ? 'hungarian' : 'english'}
 					className={style.language}
-					style={{ ...scale(3 / 5), top: rhythm(0.5), right: rhythm(0.5) }}
-					title={language === 'hu' ? 'Hungarian' : 'English'}>
+					style={{ ...scale(3 / 5), top: rhythm(0.5), right: rhythm(0.5) }}>
 					{language === 'hu' ? '🇭🇺' : '🇺🇸'}
-				</div>
+				</span>
 				<div
 					className={style.labelsContainer}
 					style={{
@@ -96,7 +98,10 @@ const PostBox = ({ postData, viewType }) => {
 					marginBottom: updated ? 0 : rhythm(0.5),
 				}}
 				dateTime={created}>
-				🕓 {new Date(created).toLocaleDateString(language)}
+				<span role='img' aria-label='clock'>
+					🕓
+				</span>{' '}
+				{new Date(created).toLocaleDateString(language)}
 			</time>
 			{updated && (
 				<time
