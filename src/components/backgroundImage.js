@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { getRandomImage } from '../helpers/imageGetter'
 import * as style from './backgroundImage.module.css'
-
-const DEFAULT_IMAGE =
-	'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png'
+import DEFAULT_IMAGE from '../images/aleks-dahlberg-Vvje-a4hI1k-unsplash.jpg'
 
 const BackgroundImage = () => {
+	console.log(DEFAULT_IMAGE)
 	// TODO add credits of img
 
 	const [rawUrl, setRawUrl] = useState()
@@ -22,17 +21,17 @@ const BackgroundImage = () => {
 				? 'portrait'
 				: 'landscape',
 		})
-		;(async () => {
-			try {
-				const randomImageResponse = await getRandomImage()
-				const urls = randomImageResponse?.data?.urls
-				setThumbUrl(urls?.thumb)
-				setRawUrl(urls?.raw || DEFAULT_IMAGE)
-			} catch (error) {
-				console.error(error)
-				setRawUrl(DEFAULT_IMAGE)
-			}
-		})()
+			; (async () => {
+				try {
+					const randomImageResponse = await getRandomImage()
+					const urls = randomImageResponse?.data?.urls
+					setThumbUrl(urls?.thumb)
+					setRawUrl(urls?.raw || DEFAULT_IMAGE)
+				} catch (error) {
+					console.error(error)
+					setRawUrl(DEFAULT_IMAGE)
+				}
+			})()
 	}, [])
 
 	return (
