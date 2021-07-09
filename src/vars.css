@@ -1,14 +1,14 @@
 :root {
-  --white: #fff;
-  --gray: #ececec;
-  --purple: #d737dc;
-  --black: #202020;
-  --full-black: #000;
-  --blue: #28b4af;
+	--white: #fff;
+	--gray: #ececec;
+	--purple: #d737dc;
+	--black: #202020;
+	--full-black: #000;
+	--blue: #28b4af;
 
-  --black-50: rgba(20, 20, 20, 0.5);
-  --black-75: rgba(20, 20, 20, 0.75);
+	--black-50: rgba(20, 20, 20, 0.5);
+	--black-75: rgba(20, 20, 20, 0.75);
 
-  --maxWidth: 1440px;
-  --maxContentWidth: 900px;
+	--maxWidth: 1440px;
+	--maxContentWidth: 900px;
 }

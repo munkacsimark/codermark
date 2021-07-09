@@ -4,6 +4,7 @@ import { rhythm, scale } from '../typography'
 import views from '../views'
 import * as style from './postBox.module.css'
 import { Link } from 'gatsby'
+import Label, { labelTypes } from './label'
 
 const PostBox = ({ postData, viewType }) => {
 	const {
@@ -59,34 +60,24 @@ const PostBox = ({ postData, viewType }) => {
 						left: rhythm(0.5),
 						bottom: rhythm(0.5),
 					}}>
-					<Link
-						to={`/category/${category}`}
-						className={style.category}
-						style={{
-							padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
-						}}>
-						<span role='img' aria-label='folder'>
-							📂
-						</span>{' '}
-						{category}
-					</Link>
+					<Label
+						type={labelTypes.CATEGORY}
+						textValue={category}
+						style={{ padding: `${rhythm(0.1)} ${rhythm(0.3)}` }}
+					/>
 					<div
 						className={style.tagContainer}
 						style={{ marginTop: rhythm(0.5) }}>
 						{tags.map(tag => (
-							<Link
+							<Label
 								key={tag}
-								to={`/tag/${tag}`}
-								className={style.tag}
+								type={labelTypes.TAG}
+								textValue={tag}
 								style={{
 									padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
 									marginRight: rhythm(0.5),
-								}}>
-								<span role='img' aria-label='tag'>
-									🏷
-								</span>{' '}
-								{tag}
-							</Link>
+								}}
+							/>
 						))}
 					</div>
 				</div>

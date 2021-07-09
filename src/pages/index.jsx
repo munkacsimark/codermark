@@ -5,6 +5,7 @@ import { rhythm } from '../typography'
 import BigTitle from '../components/bigTitle'
 import PostBox from '../components/postBox'
 import views from '../views'
+import viewChangeHandler from '../helpers/viewChangeHandler'
 import * as style from './index.module.css'
 
 const Index = ({
@@ -14,32 +15,7 @@ const Index = ({
 }) => {
 	const [view, setView] = useState(views.DESKTOP)
 
-	useEffect(() => {
-		const mediaQueryDesktop = window.matchMedia('(min-width: 1025px)')
-		const mediaQueryTablet = window.matchMedia(
-			'(min-width: 769px) and (max-width: 1024px)'
-		)
-		const mediaQueryMobile = window.matchMedia('(max-width: 768px)')
-
-		const handleDesktopChange = event => {
-			if (event.target.matches) setView(views.DESKTOP)
-		}
-		const handleTabletChange = event => {
-			if (event.target.matches) setView(views.TABLET)
-		}
-		const handleMobileChange = event => {
-			if (event.target.matches) setView(views.MOBILE)
-		}
-
-		mediaQueryDesktop.addEventListener('change', handleDesktopChange)
-		mediaQueryTablet.addEventListener('change', handleTabletChange)
-		mediaQueryMobile.addEventListener('change', handleMobileChange)
-		return () => {
-			mediaQueryDesktop.removeEventListener('change', handleDesktopChange)
-			mediaQueryTablet.removeEventListener('change', handleTabletChange)
-			mediaQueryMobile.removeEventListener('change', handleMobileChange)
-		}
-	}, [])
+	useEffect(() => viewChangeHandler(setView), [])
 
 	return (
 		<>

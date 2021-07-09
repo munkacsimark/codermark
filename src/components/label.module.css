@@ -1,0 +1,23 @@
+.category {
+	display: inline-block;
+	width: max-content;
+	color: var(--white);
+	background-color: var(--purple);
+	border-radius: 3px;
+}
+.category:hover {
+	text-decoration: none;
+}
+.tag {
+	display: inline-block;
+	width: max-content;
+	color: var(--white);
+	background-color: var(--blue);
+	border-radius: 3px;
+}
+.tag:last-child {
+	margin-right: 0;
+}
+.tag:hover {
+	text-decoration: none;
+}

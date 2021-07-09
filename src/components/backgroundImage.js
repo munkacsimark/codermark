@@ -4,7 +4,6 @@ import * as style from './backgroundImage.module.css'
 import DEFAULT_IMAGE from '../images/aleks-dahlberg-Vvje-a4hI1k-unsplash.jpg'
 
 const BackgroundImage = () => {
-	console.log(DEFAULT_IMAGE)
 	// TODO add credits of img
 
 	const [rawUrl, setRawUrl] = useState()

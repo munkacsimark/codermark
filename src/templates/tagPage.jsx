@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+import BigTitle from '../components/bigTitle'
+import PostBox from '../components/postBox'
+import { rhythm, scale } from '../typography'
+import views from '../views'
+import viewChangeHandler from '../helpers/viewChangeHandler'
+import Label, { labelTypes } from '../components/label'
+import * as style from './tagPage.module.css'
 
 const TagPage = ({
 	data: {
@@ -7,19 +15,37 @@ const TagPage = ({
 	},
 	pageContext: { tag },
 }) => {
+	const [view, setView] = useState(views.DESKTOP)
+
+	useEffect(() => viewChangeHandler(setView), [])
+
 	return (
 		<>
-			<h1>TAG: {tag}</h1>
-			{posts.map(post => (
-				<div key={post.id}>
-					<h2>{post.frontmatter.title}</h2>
-					<ul>
-						{post.frontmatter.tags.map(tag => (
-							<li key={tag}>{tag}</li>
-						))}
-					</ul>
+			<Layout>
+				<BigTitle
+					style={{
+						margin: `${rhythm(view === views.MOBILE ? 1 : 2)} 0`,
+					}}
+				/>
+				<Label
+					type={labelTypes.TAG}
+					textValue={tag}
+					style={{
+						...scale(2 / 5),
+						padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
+						marginBottom: rhythm(1),
+					}}
+				/>
+				<div className={style.postContainer}>
+					{posts.map(post => (
+						<PostBox
+							key={post.id}
+							postData={post.frontmatter}
+							viewType={view}
+						/>
+					))}
 				</div>
-			))}
+			</Layout>
 		</>
 	)
 }
@@ -35,8 +61,25 @@ export const pageQuery = graphql`
 			nodes {
 				id
 				frontmatter {
+					slug
 					tags
 					title
+					image {
+						childImageSharp {
+							gatsbyImageData(
+								width: 400
+								placeholder: BLURRED
+								formats: [AUTO, WEBP, AVIF]
+							)
+						}
+					}
+					imageAlt
+					category
+					created
+					updated
+					description
+					published
+					language
 				}
 			}
 		}

@@ -1,23 +1,22 @@
 .bigTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .mainTitle,
 .subTitle {
-  color: var(--gray);
-  font-weight: 100;
-  text-shadow: 0 1px 1px var(--black);
-  border: none;
-  margin: 0;
-  padding: 0;
+	color: var(--gray);
+	font-weight: 100;
+	text-shadow: 0 1px 1px var(--black);
+	border: none;
+	margin: 0;
+	padding: 0;
 }
 .mainTitle::before {
-  content: '<';
+	content: '<';
 }
 .mainTitle::after {
-  content: '>';
+	content: '>';
 }
 .subTitle {
-
 }

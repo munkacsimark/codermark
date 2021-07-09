@@ -6,36 +6,13 @@ import Layout from '../components/layout'
 import { rhythm, scale } from '../typography'
 import * as style from './postPage.module.css'
 import views from '../views'
+import viewChangeHandler from '../helpers/viewChangeHandler'
+import Label, { labelTypes } from '../components/label'
 
 const PostPage = ({ data: { mdx: post } }) => {
 	const [view, setView] = useState(views.DESKTOP)
 
-	useEffect(() => {
-		const mediaQueryDesktop = window.matchMedia('(min-width: 1025px)')
-		const mediaQueryTablet = window.matchMedia(
-			'(min-width: 769px) and (max-width: 1024px)'
-		)
-		const mediaQueryMobile = window.matchMedia('(max-width: 768px)')
-
-		const handleDesktopChange = event => {
-			if (event.target.matches) setView(views.DESKTOP)
-		}
-		const handleTabletChange = event => {
-			if (event.target.matches) setView(views.TABLET)
-		}
-		const handleMobileChange = event => {
-			if (event.target.matches) setView(views.MOBILE)
-		}
-
-		mediaQueryDesktop.addEventListener('change', handleDesktopChange)
-		mediaQueryTablet.addEventListener('change', handleTabletChange)
-		mediaQueryMobile.addEventListener('change', handleMobileChange)
-		return () => {
-			mediaQueryDesktop.removeEventListener('change', handleDesktopChange)
-			mediaQueryTablet.removeEventListener('change', handleTabletChange)
-			mediaQueryMobile.removeEventListener('change', handleMobileChange)
-		}
-	}, [])
+	useEffect(() => viewChangeHandler(setView), [])
 
 	const { image, imageAlt, category, tags, created, updated, language } =
 		post.frontmatter
@@ -89,33 +66,25 @@ const PostPage = ({ data: { mdx: post } }) => {
 					<div
 						className={style.tagContainer}
 						style={{ margin: `${rhythm(0.3)} 0` }}>
-						<Link
-							to={`/category/${category}`}
-							className={style.category}
+						<Label
+							type={labelTypes.CATEGORY}
+							textValue={category}
 							style={{
 								...scale(-1 / 5),
 								padding: `0 ${rhythm(0.2)}`,
-							}}>
-							<span role='img' aria-label='folder'>
-								📂
-							</span>{' '}
-							{category}
-						</Link>
+							}}
+						/>
 						{tags.map(tag => (
-							<Link
+							<Label
 								key={tag}
-								to={`/tag/${tag}`}
-								className={style.tag}
+								type={labelTypes.TAG}
+								textValue={tag}
 								style={{
 									...scale(-1 / 5),
 									padding: `0 ${rhythm(0.2)}`,
 									marginLeft: rhythm(0.3),
-								}}>
-								<span role='img' aria-label='tag'>
-									🏷
-								</span>{' '}
-								{tag}
-							</Link>
+								}}
+							/>
 						))}
 					</div>
 				</header>

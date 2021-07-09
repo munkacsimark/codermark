@@ -1,14 +1,14 @@
 .backgroundImage,
 .fader {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: fixed;
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	position: fixed;
 }
 .backgroundImage {
-  z-index: -2;
+	z-index: -2;
 }
 .fader {
-  background: linear-gradient(transparent, var(--full-black));
-  z-index: -1;
+	background: linear-gradient(transparent, var(--full-black));
+	z-index: -1;
 }
