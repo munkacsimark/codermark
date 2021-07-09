@@ -1,54 +1,50 @@
-import * as React from 'react'
+import React from 'react'
+import Layout from '../components/layout'
+import BigTitle from '../components/bigTitle'
+import { rhythm, scale } from '../typography'
+import { socialItems } from '../components/navbar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'gatsby'
+import * as style from './me.module.css' // using the same structure like at me page
 
-// styles
-const pageStyles = {
-	color: '#232129',
-	padding: '96px',
-	fontFamily: '-apple-system, Roboto, sans-serif, serif',
-}
-const headingStyles = {
-	marginTop: 0,
-	marginBottom: 64,
-	maxWidth: 320,
-}
-
-const paragraphStyles = {
-	marginBottom: 48,
-}
-const codeStyles = {
-	color: '#8A6534',
-	padding: 4,
-	backgroundColor: '#FFF4DB',
-	fontSize: '1.25rem',
-	borderRadius: 4,
-}
-
-// markup
-const NotFoundPage = () => {
+const FourZeroFourPage = () => {
 	return (
-		<main style={pageStyles}>
-			<title>Not found</title>
-			<h1 style={headingStyles}>Page not found</h1>
-			<p style={paragraphStyles}>
-				Sorry{' '}
-				<span role='img' aria-label='Pensive emoji'>
-					😔
-				</span>{' '}
-				we couldn’t find what you were looking for.
-				<br />
-				{process.env.NODE_ENV === 'development' ? (
-					<>
-						<br />
-						Try creating a page in <code style={codeStyles}>src/pages/</code>.
-						<br />
-					</>
-				) : null}
-				<br />
-				<Link to='/'>Go home</Link>.
-			</p>
-		</main>
+		<Layout>
+			<BigTitle
+				style={{
+					margin: `${rhythm(2)} 0`,
+				}}
+			/>
+			<section
+				className={style.aboutBox}
+				style={{ padding: `${rhythm(1)} ${rhythm(2)}` }}>
+				<h3 style={{ ...scale(4 / 5) }}>Hi there! This is a 404. <span
+					role='img'
+					aria-label='sad'>
+					😞
+				</span></h3>
+				<p style={{ ...scale(2 / 5) }}>
+					Nice catch! This page doesn't exists. Maybe there is a typo in the
+					URL. You can always <Link to='/'> start over</Link> or if you really
+					need that info feel free to contact me through my social platforms.
+				</p>
+				<div className={style.socialBox} style={{ marginTop: rhythm(1) }}>
+					{socialItems.map(({ title, url, icon }) => (
+						<a
+							style={{ marginLeft: rhythm(1) }}
+							className={style.socialIcon}
+							key={title}
+							href={url}
+							rel='noreferrer noopener'
+							target='_blank'
+							title={title}>
+							<FontAwesomeIcon icon={icon} size='2x' />
+						</a>
+					))}
+				</div>
+			</section>
+		</Layout>
 	)
 }
 
-export default NotFoundPage
+export default FourZeroFourPage

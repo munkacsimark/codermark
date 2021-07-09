@@ -26,8 +26,6 @@ const PostBox = ({ postData, viewType }) => {
 		[views.MOBILE]: '100%',
 	}
 
-	console.log(image)
-
 	return (
 		<div
 			lang={language}

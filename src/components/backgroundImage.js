@@ -20,17 +20,17 @@ const BackgroundImage = () => {
 				? 'portrait'
 				: 'landscape',
 		})
-			; (async () => {
-				try {
-					const randomImageResponse = await getRandomImage()
-					const urls = randomImageResponse?.data?.urls
-					setThumbUrl(urls?.thumb)
-					setRawUrl(urls?.raw || DEFAULT_IMAGE)
-				} catch (error) {
-					console.error(error)
-					setRawUrl(DEFAULT_IMAGE)
-				}
-			})()
+		;(async () => {
+			try {
+				const randomImageResponse = await getRandomImage()
+				const urls = randomImageResponse?.data?.urls
+				setThumbUrl(urls?.thumb)
+				setRawUrl(urls?.raw || DEFAULT_IMAGE)
+			} catch (error) {
+				console.error(error)
+				setRawUrl(DEFAULT_IMAGE)
+			}
+		})()
 	}, [])
 
 	return (
