@@ -1,13 +1,13 @@
 .postImage {
 	width: 100%;
 	max-width: 1200px;
-	max-height: 800px;
+	max-height: 70vh;
 	border-radius: 8px;
 }
 @media (max-width: 970px) {
 	.postImage {
 		border-radius: 8px 8px 0 0;
-		max-height: 400px;
+		max-height: 50vh;
 	}
 }
 .article {
