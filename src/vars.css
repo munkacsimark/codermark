@@ -1,10 +1,12 @@
 :root {
 	--white: #fff;
 	--gray: #ececec;
-	--purple: #d737dc;
+	--purple: #884b89;
+	--light-purple: #c272c4;
 	--black: #202020;
 	--full-black: #000;
-	--blue: #28b4af;
+	--blue: #75a4a2;
+	--light-blue: #28b4af;
 
 	--black-50: rgba(20, 20, 20, 0.5);
 	--black-75: rgba(20, 20, 20, 0.75);

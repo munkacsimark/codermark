@@ -19,7 +19,7 @@
 	transition: 0.2s;
 }
 .navLink:hover {
-	color: var(--blue);
+	color: var(--light-blue);
 	text-decoration: none;
 }
 .navLink:last-child {
@@ -31,7 +31,7 @@
 	transition: 0.2s;
 }
 .socialIcon:hover {
-	color: var(--blue);
+	color: var(--light-blue);
 }
 .socialIcon:first-child {
 	margin-left: 0 !important;

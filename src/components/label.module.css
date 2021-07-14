@@ -4,9 +4,11 @@
 	color: var(--white);
 	background-color: var(--purple);
 	border-radius: 3px;
+	transition: 0.2s;
 }
 .category:hover {
 	text-decoration: none;
+	background-color: var(--light-purple);
 }
 .tag {
 	display: inline-block;
@@ -14,10 +16,12 @@
 	color: var(--white);
 	background-color: var(--blue);
 	border-radius: 3px;
+	transition: 0.2s;
 }
 .tag:last-child {
 	margin-right: 0;
 }
 .tag:hover {
 	text-decoration: none;
+	background-color: var(--light-blue);
 }

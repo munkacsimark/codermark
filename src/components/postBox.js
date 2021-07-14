@@ -5,6 +5,8 @@ import views from '../views'
 import { Link } from 'gatsby'
 import Label, { labelTypes } from './label'
 import { huFlag, usFlag } from '../helpers/flags'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 import * as style from './postBox.module.css'
 
 const PostBox = ({ postData, viewType }) => {
@@ -37,8 +39,8 @@ const PostBox = ({ postData, viewType }) => {
 				)})`,
 				margin: rhythm(0.5),
 			}}>
-			<div className={style.imageContainer}>
-				<Link to={slug}>
+			<div className={style.postHeader}>
+				<Link to={slug} className={style.imageContainer}>
 					<GatsbyImage
 						className={style.image}
 						image={getImage(image)}
@@ -99,9 +101,7 @@ const PostBox = ({ postData, viewType }) => {
 					marginBottom: updated ? 0 : rhythm(0.5),
 				}}
 				dateTime={created}>
-				<span role='img' aria-label='clock'>
-					🕓
-				</span>{' '}
+				<FontAwesomeIcon icon={faClock} />{' '}
 				{new Date(created).toLocaleDateString(language)}
 			</time>
 			{updated && (
