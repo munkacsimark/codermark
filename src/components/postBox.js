@@ -2,9 +2,10 @@ import React from 'react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { rhythm, scale } from '../typography'
 import views from '../views'
-import * as style from './postBox.module.css'
 import { Link } from 'gatsby'
 import Label, { labelTypes } from './label'
+import { huFlag, usFlag } from '../helpers/flags'
+import * as style from './postBox.module.css'
 
 const PostBox = ({ postData, viewType }) => {
 	const {
@@ -44,13 +45,18 @@ const PostBox = ({ postData, viewType }) => {
 						alt={imageAlt}
 					/>
 				</Link>
+
 				<span
 					role='img'
 					aria-label={language === 'hu' ? 'hungarian' : 'english'}
 					title={language === 'hu' ? 'hungarian' : 'english'}
 					className={style.language}
-					style={{ ...scale(3 / 5), top: rhythm(0.5), right: rhythm(0.5) }}>
-					{language === 'hu' ? '🇭🇺' : '🇺🇸'}
+					style={{
+						top: rhythm(0.5),
+						right: rhythm(0.5),
+						padding: rhythm(0.4),
+					}}>
+					{language === 'hu' ? huFlag : usFlag}
 				</span>
 				<div
 					className={style.labelsContainer}

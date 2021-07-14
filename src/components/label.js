@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFolder, faTag } from '@fortawesome/free-solid-svg-icons'
 import * as localStyle from './label.module.css'
 
 const labelTypes = {
@@ -15,11 +17,7 @@ const Label = ({ type, textValue, style }) => {
 				type === labelTypes.CATEGORY ? localStyle.category : localStyle.tag
 			}
 			style={style}>
-			<span
-				role='img'
-				aria-label={type === labelTypes.CATEGORY ? 'folder' : 'tag'}>
-				{type === labelTypes.CATEGORY ? '📂' : '🏷'}
-			</span>{' '}
+			<FontAwesomeIcon icon={type === labelTypes.CATEGORY ? faFolder : faTag} />{' '}
 			{textValue}
 		</Link>
 	)

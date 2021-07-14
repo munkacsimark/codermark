@@ -8,6 +8,8 @@ import * as style from './postPage.module.css'
 import views from '../views'
 import viewChangeHandler from '../helpers/viewChangeHandler'
 import Label, { labelTypes } from '../components/label'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGlasses, faPen, faRocket } from '@fortawesome/free-solid-svg-icons'
 
 const PostPage = ({ data: { mdx: post } }) => {
 	const [view, setView] = useState(views.DESKTOP)
@@ -33,9 +35,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 				<header>
 					<div style={{ margin: `${rhythm(0.3)} 0` }}>
 						<span className={style.timeInfo}>
-							<span role='img' aria-label='rocket'>
-								🚀
-							</span>{' '}
+							<FontAwesomeIcon icon={faRocket} />{' '}
 							{language === 'hu' ? `Publikálva: ` : `Published on: `}
 							<time dateTime={created}>
 								{new Date(created).toLocaleDateString(language)}
@@ -44,9 +44,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 						{' ﹒ '}
 						{updated && (
 							<span className={style.timeInfo}>
-								<span role='img' aria-label='thinking face'>
-									🤔
-								</span>{' '}
+								<FontAwesomeIcon icon={faPen} />{' '}
 								{language === 'hu' ? `Frissítve: ` : `Updated on: `}
 								<time dateTime={updated}>
 									{new Date(updated).toLocaleDateString(language)}
@@ -55,9 +53,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 							</span>
 						)}
 						<span className={style.timeInfo}>
-							<span role='img' aria-label='books'>
-								📚
-							</span>{' '}
+							<FontAwesomeIcon icon={faGlasses} />{' '}
 							{language === 'hu'
 								? `Olvasási idő: ${post.timeToRead} perc`
 								: `Time to read: ${post.timeToRead} mins`}
