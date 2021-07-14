@@ -32,7 +32,7 @@ const CategoryPage = ({
 					textValue={category}
 					style={{
 						...scale(2 / 5),
-						padding: `${rhythm(0.1)} ${rhythm(0.3)}`,
+						padding: `${rhythm(0.2)} ${rhythm(0.6)}`,
 						marginBottom: rhythm(1),
 					}}
 				/>

@@ -6,7 +6,7 @@ import { Link } from 'gatsby'
 import Label, { labelTypes } from './label'
 import { huFlag, usFlag } from '../helpers/flags'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faPen, faRocket } from '@fortawesome/free-solid-svg-icons'
 import * as style from './postBox.module.css'
 
 const PostBox = ({ postData, viewType }) => {
@@ -94,24 +94,32 @@ const PostBox = ({ postData, viewType }) => {
 			<hr className={style.hr} />
 			<p style={{ padding: `0 ${rhythm(1)}` }}>{description}</p>
 			<hr className={style.hr} />
-			<time
-				className={style.time}
-				style={{
-					padding: `0 ${rhythm(1)}`,
-					marginBottom: updated ? 0 : rhythm(0.5),
-				}}
-				dateTime={created}>
-				<FontAwesomeIcon icon={faClock} />{' '}
-				{new Date(created).toLocaleDateString(language)}
-			</time>
-			{updated && (
+			<div className={style.timeHolder}>
 				<time
 					className={style.time}
-					style={{ padding: `0 ${rhythm(1)}`, marginBottom: rhythm(0.5) }}
+					style={{
+						...scale(-1 / 5),
+						padding: `0 ${rhythm(0.5)}`,
+						marginBottom: updated ? 0 : rhythm(0.5),
+					}}
 					dateTime={created}>
-					Updated: {new Date(created).toLocaleDateString(language)}
+					<FontAwesomeIcon icon={faRocket} />{' '}
+					{new Date(created).toLocaleDateString(language)}
 				</time>
-			)}
+				{updated && (
+					<time
+						className={style.time}
+						style={{
+							...scale(-1 / 5),
+							padding: `0 ${rhythm(0.5)}`,
+							marginBottom: rhythm(0.5),
+						}}
+						dateTime={created}>
+						<FontAwesomeIcon icon={faPen} />{' '}
+						{new Date(created).toLocaleDateString(language)}
+					</time>
+				)}
+			</div>
 		</div>
 	)
 }

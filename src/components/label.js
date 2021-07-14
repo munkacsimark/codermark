@@ -12,7 +12,7 @@ const labelTypes = {
 const Label = ({ type, textValue, style }) => {
 	return (
 		<Link
-			to={`/${type === labelTypes.CATEGORY ? 'category' : 'tag'}/${textValue}`}
+			to={`/${type}/${textValue}`}
 			className={
 				type === labelTypes.CATEGORY ? localStyle.category : localStyle.tag
 			}

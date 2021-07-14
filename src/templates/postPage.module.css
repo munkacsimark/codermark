@@ -3,6 +3,7 @@
 	max-width: 1200px;
 	max-height: 70vh;
 	border-radius: 8px;
+	box-shadow: 0 1px 2px var(--black-75);
 }
 @media (max-width: 970px) {
 	.postImage {
@@ -15,6 +16,7 @@
 	width: 100%;
 	max-width: var(--maxContentWidth);
 	border-radius: 0 0 8px 8px;
+	box-shadow: 0 1px 2px var(--black-75);
 }
 .tagContainer {
 	display: flex;

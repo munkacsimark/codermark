@@ -1,22 +1,23 @@
-.category {
+.category,
+.tag {
 	display: inline-block;
 	width: max-content;
+	font-weight: 100;
 	color: var(--white);
 	background-color: var(--purple);
 	border-radius: 3px;
 	transition: 0.2s;
+	box-shadow: 0 1px 2px var(--black-75);
+}
+.category {
+	background-color: var(--purple);
 }
 .category:hover {
 	text-decoration: none;
 	background-color: var(--light-purple);
 }
 .tag {
-	display: inline-block;
-	width: max-content;
-	color: var(--white);
 	background-color: var(--blue);
-	border-radius: 3px;
-	transition: 0.2s;
 }
 .tag:last-child {
 	margin-right: 0;

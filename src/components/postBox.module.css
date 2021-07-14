@@ -6,7 +6,7 @@
 	min-width: 310px;
 	width: 100%;
 	height: max-content;
-	box-shadow: 0 4px 4px var(--black-75);
+	box-shadow: 0 1px 2px var(--black-75);
 }
 .postHeader {
 	position: relative;
@@ -47,6 +47,11 @@
 }
 .title a:hover {
 	text-decoration: none;
+}
+.timeHolder {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 .time {
 	text-align: center;
