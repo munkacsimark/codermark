@@ -9,7 +9,11 @@ import views from '../views'
 import viewChangeHandler from '../helpers/viewChangeHandler'
 import Label, { labelTypes } from '../components/label'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlasses, faPen, faRocket } from '@fortawesome/free-solid-svg-icons'
+import {
+	faHourglassHalf,
+	faPen,
+	faRocket,
+} from '@fortawesome/free-solid-svg-icons'
 
 const PostPage = ({ data: { mdx: post } }) => {
 	const [view, setView] = useState(views.DESKTOP)
@@ -53,7 +57,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 							</span>
 						)}
 						<span className={style.timeInfo}>
-							<FontAwesomeIcon icon={faGlasses} />{' '}
+							<FontAwesomeIcon icon={faHourglassHalf} />{' '}
 							{language === 'hu'
 								? `Olvasási idő: ${post.timeToRead} perc`
 								: `Time to read: ${post.timeToRead} mins`}
