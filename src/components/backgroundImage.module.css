@@ -7,8 +7,17 @@
 }
 .backgroundImage {
 	z-index: -2;
+	transition: 1s;
+}
+.backgroundImageFade {
+	opacity: 0;
 }
 .fader {
-	background: linear-gradient(transparent, var(--full-black));
+	background: var(--full-black);
 	z-index: -1;
+	opacity: 1;
+	transition: 1s;
+}
+.transparentFader {
+	opacity: 0.3;
 }
