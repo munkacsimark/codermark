@@ -12,18 +12,26 @@ const viewChangeHandler = viewSetter => {
 	const mediaQueryMobile = window.matchMedia(mediaQueryStrings.MOBILE)
 
 	const handleDesktopChange = event => {
-		if (event.target.matches) viewSetter(views.DESKTOP)
+		if (!event.target.matches) return
+		viewSetter(views.DESKTOP)
 	}
 	const handleTabletChange = event => {
-		if (event.target.matches) viewSetter(views.TABLET)
+		if (!event.target.matches) return
+		viewSetter(views.TABLET)
 	}
 	const handleMobileChange = event => {
-		if (event.target.matches) viewSetter(views.MOBILE)
+		if (!event.target.matches) return
+		viewSetter(views.MOBILE)
 	}
 
 	mediaQueryDesktop.addEventListener('change', handleDesktopChange)
 	mediaQueryTablet.addEventListener('change', handleTabletChange)
 	mediaQueryMobile.addEventListener('change', handleMobileChange)
+
+	if (mediaQueryDesktop.matches) viewSetter(views.DESKTOP)
+	if (mediaQueryTablet.matches) viewSetter(views.TABLET)
+	if (mediaQueryMobile.matches) viewSetter(views.MOBILE)
+
 	return () => {
 		mediaQueryDesktop.removeEventListener('change', handleDesktopChange)
 		mediaQueryTablet.removeEventListener('change', handleTabletChange)

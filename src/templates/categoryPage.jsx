@@ -21,8 +21,9 @@ const CategoryPage = ({
 
 	return (
 		<>
-			<Layout>
+			<Layout view={view}>
 				<BigTitle
+					view={view}
 					style={{
 						margin: `${rhythm(view === views.MOBILE ? 1 : 2)} 0`,
 					}}

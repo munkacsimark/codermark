@@ -24,7 +24,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 		post.frontmatter
 
 	return (
-		<Layout>
+		<Layout view={view}>
 			<GatsbyImage
 				className={style.postImage}
 				style={{ marginTop: rhythm(2) }}
@@ -34,7 +34,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 			<article
 				className={style.article}
 				style={{
-					padding: `${rhythm(1)} ${rhythm(view === views.MOBILE ? 1 : 3)}`,
+					padding: `${rhythm(1)} ${rhythm(view === views.MOBILE ? 0.5 : 2)}`,
 				}}>
 				<header>
 					<div style={{ margin: `${rhythm(0.3)} 0` }}>

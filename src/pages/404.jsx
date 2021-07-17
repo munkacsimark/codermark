@@ -1,28 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import BigTitle from '../components/bigTitle'
 import { rhythm, scale } from '../typography'
 import { socialItems } from '../components/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'gatsby'
+import viewChangeHandler from '../helpers/viewChangeHandler'
+import views from '../views'
 import * as style from './me.module.css' // using the same structure like at me page
 
 const FourZeroFourPage = () => {
+	const [view, setView] = useState(views.DESKTOP)
+
+	useEffect(() => viewChangeHandler(setView), [])
+
 	return (
-		<Layout>
+		<Layout view={view}>
 			<BigTitle
+				view={view}
 				style={{
-					margin: `${rhythm(2)} 0`,
+					margin: `${view === views.MOBILE ? rhythm(1) : rhythm(2)} 0`,
 				}}
 			/>
 			<section
 				className={style.aboutBox}
 				style={{ padding: `${rhythm(1)} ${rhythm(2)}` }}>
-				<h3 style={{ ...scale(4 / 5) }}>Hi there! This is a 404. <span
-					role='img'
-					aria-label='sad'>
-					😞
-				</span></h3>
+				<h3 style={{ ...scale(4 / 5) }}>
+					Hi there! This is a 404.{' '}
+					<span role='img' aria-label='sad'>
+						😞
+					</span>
+				</h3>
 				<p style={{ ...scale(2 / 5) }}>
 					Nice catch! This page doesn't exists. Maybe there is a typo in the
 					URL. You can always <Link to='/'> start over</Link> or if you really

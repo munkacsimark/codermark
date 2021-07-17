@@ -37,7 +37,7 @@ const PostBox = ({ postData, viewType }) => {
 				flexBasis: `calc(${flexBasisMapForViewType[viewType]} - ${rhythm(
 					viewType === views.MOBILE ? 0.5 : 1
 				)})`,
-				margin: rhythm(0.5),
+				margin: viewType === views.MOBILE ? `${rhythm(0.5)} auto` : rhythm(0.5),
 			}}>
 			<div className={style.postHeader}>
 				<Link to={slug} className={style.imageContainer}>

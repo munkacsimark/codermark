@@ -19,8 +19,9 @@ const Index = ({
 
 	return (
 		<>
-			<Layout>
+			<Layout view={view}>
 				<BigTitle
+					view={view}
 					showSubtitle
 					style={{
 						margin: `${rhythm(view === views.MOBILE ? 1 : 2)} 0`,

@@ -1,22 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import BigTitle from '../components/bigTitle'
 import { rhythm, scale } from '../typography'
 import { socialItems } from '../components/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import viewChangeHandler from '../helpers/viewChangeHandler'
+import views from '../views'
 import * as style from './me.module.css'
 
 const IndexPage = () => {
+	const [view, setView] = useState(views.DESKTOP)
+
+	useEffect(() => viewChangeHandler(setView), [])
+
 	return (
-		<Layout>
+		<Layout view={view}>
 			<BigTitle
+				view={view}
 				style={{
-					margin: `${rhythm(2)} 0`,
+					margin: `${view === views.MOBILE ? rhythm(1) : rhythm(2)} 0`,
 				}}
 			/>
 			<section
 				className={style.aboutBox}
-				style={{ padding: `${rhythm(1)} ${rhythm(2)}` }}>
+				style={{
+					padding: `${view === views.MOBILE ? rhythm(0.5) : rhythm(1)} ${
+						view === views.MOBILE ? rhythm(1) : rhythm(2)
+					}`,
+				}}>
 				<h3 style={{ ...scale(4 / 5) }}>Hi there! My name is Mark Munkacsi.</h3>
 				<p style={{ ...scale(2 / 5) }}>
 					I'm a passionate developer, who is always learning and looking for new
