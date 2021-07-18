@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 import BigTitle from '../components/bigTitle'
 import PostBox from '../components/postBox'
 import { rhythm, scale } from '../typography'
@@ -23,7 +23,7 @@ const CategoryPage = ({
 	return (
 		<>
 			<Layout view={view}>
-				<SEO
+				<Seo
 					title={`CoderMark | Posts in "${category}" category`}
 					description={`Check the list of Mark Munkacsi's posts in "${category}" category.`}
 					url={`/category/${category}`}

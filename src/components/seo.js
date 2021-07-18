@@ -67,7 +67,7 @@ const SchemaOrg = React.memo(
 	}
 )
 
-const SEO = ({ title, description, url, image, isBlogPost, datePublished }) => {
+const Seo = ({ title, description, url, image, isBlogPost, datePublished }) => {
 	return (
 		<>
 			<Helmet>
@@ -109,4 +109,4 @@ const SEO = ({ title, description, url, image, isBlogPost, datePublished }) => {
 	)
 }
 
-export default SEO
+export default Seo

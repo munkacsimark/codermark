@@ -7,7 +7,8 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-image',
 		'gatsby-plugin-react-helmet',
-		//'gatsby-plugin-sitemap',
+		'gatsby-plugin-sitemap',
+		'gatsby-plugin-fontawesome-css',
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {

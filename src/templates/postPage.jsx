@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 import { rhythm, scale } from '../typography'
 import * as style from './postPage.module.css'
 import views from '../views'
@@ -36,7 +36,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 
 	return (
 		<Layout view={view}>
-			<SEO
+			<Seo
 				isBlogPost
 				title={`CoderMark | ${title}`}
 				description={description}

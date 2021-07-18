@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 import BigTitle from '../components/bigTitle'
 import { rhythm, scale } from '../typography'
 import { socialItems } from '../components/navbar'
@@ -16,7 +16,7 @@ const IndexPage = () => {
 
 	return (
 		<Layout view={view}>
-			<SEO
+			<Seo
 				title='CoderMark | About'
 				description="Hey there! I'm Mark Munkacsi. Briefly about myself."
 				url='/me'
