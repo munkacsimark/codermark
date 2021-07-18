@@ -20,6 +20,47 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-plugin-feed-mdx`,
+			options: {
+				feeds: [
+					{
+						serialize: ({ query: { allMdx } }) =>
+							allMdx.edges.map(edge =>
+								Object.assign({}, edge.node.frontmatter, {
+									description: edge.node.frontmatter.description,
+									date: edge.node.frontmatter.created,
+									url: `${BASE_URL}${edge.node.slug}`,
+									guid: `${BASE_URL}${edge.node.slug}`,
+									custom_elements: [{ 'content:encoded': edge.node.html }],
+								})
+							),
+						query: `
+							{
+								allMdx(
+									sort: { order: DESC, fields: frontmatter___created },
+								) {
+									edges {
+										node {
+											excerpt
+											html
+											slug
+											frontmatter {
+												title
+												created
+												description
+											}
+										}
+									}
+								}
+							}
+						`,
+						output: './rss.xml',
+						title: 'CoderMark Blog',
+					},
+				],
+			},
+		},
+		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
 				icon: 'src/images/icon.png',

@@ -51,7 +51,7 @@ export default Index
 
 export const pageQuery = graphql`
 	query LastPosts {
-		allMdx(sort: { order: DESC, fields: frontmatter___created }, limit: 12) {
+		allMdx(sort: { order: DESC, fields: frontmatter___created }) {
 			nodes {
 				id
 				frontmatter {
