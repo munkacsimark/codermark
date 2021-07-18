@@ -135,7 +135,6 @@ export const pageQuery = graphql`
 				created
 				updated
 				description
-				published
 				language
 				slug
 			}

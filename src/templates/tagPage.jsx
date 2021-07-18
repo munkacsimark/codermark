@@ -63,7 +63,7 @@ export const pageQuery = graphql`
 	query PostsByTag($tag: String) {
 		allMdx(
 			sort: { order: DESC, fields: frontmatter___created }
-			filter: { frontmatter: { tags: { in: [$tag] }, published: { eq: true } } }
+			filter: { frontmatter: { tags: { in: [$tag] } } }
 		) {
 			nodes {
 				id
@@ -85,7 +85,6 @@ export const pageQuery = graphql`
 					created
 					updated
 					description
-					published
 					language
 				}
 			}

@@ -63,9 +63,7 @@ export const pageQuery = graphql`
 	query PostsByCategory($category: String) {
 		allMdx(
 			sort: { order: DESC, fields: frontmatter___created }
-			filter: {
-				frontmatter: { category: { eq: $category }, published: { eq: true } }
-			}
+			filter: { frontmatter: { category: { eq: $category } } }
 		) {
 			nodes {
 				id
@@ -87,7 +85,6 @@ export const pageQuery = graphql`
 					created
 					updated
 					description
-					published
 					language
 				}
 			}

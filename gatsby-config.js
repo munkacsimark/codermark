@@ -1,14 +1,24 @@
 const a11yEmoji = require('@fec/remark-a11y-emoji')
 
+const BASE_URL = 'https://codermark.dev'
+
 module.exports = {
 	siteMetadata: {
-		title: 'codermark',
+		siteUrl: BASE_URL,
 	},
 	plugins: [
 		'gatsby-plugin-image',
 		'gatsby-plugin-react-helmet',
-		'gatsby-plugin-sitemap',
 		'gatsby-plugin-fontawesome-css',
+		'gatsby-plugin-sitemap',
+		{
+			resolve: 'gatsby-plugin-robots-txt',
+			options: {
+				host: BASE_URL,
+				sitemap: `${BASE_URL}/sitemap/sitemap-index.xml`,
+				policy: [{ userAgent: '*', allow: '/' }],
+			},
+		},
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
