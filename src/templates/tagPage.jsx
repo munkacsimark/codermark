@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 import BigTitle from '../components/bigTitle'
 import PostBox from '../components/postBox'
 import { rhythm, scale } from '../typography'
@@ -22,6 +23,11 @@ const TagPage = ({
 	return (
 		<>
 			<Layout view={view}>
+				<SEO
+					title={`CoderMark | Posts with "${tag}" tag.`}
+					description={`Check the list of Mark Munkacsi's posts with "${tag}" tag.`}
+					url={`/tag/${tag}`}
+				/>
 				<BigTitle
 					view={view}
 					style={{

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
+import SEO from '../components/seo'
 import Layout from '../components/layout'
 import { rhythm } from '../typography'
 import BigTitle from '../components/bigTitle'
@@ -20,6 +21,11 @@ const Index = ({
 	return (
 		<>
 			<Layout view={view}>
+				<SEO
+					title='CoderMark | Blog home'
+					description="Check Mark Munkacsi's posts about frontend, coding, tech and everyday stuff."
+					url=''
+				/>
 				<BigTitle
 					view={view}
 					showSubtitle

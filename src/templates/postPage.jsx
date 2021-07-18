@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 import { rhythm, scale } from '../typography'
 import * as style from './postPage.module.css'
 import views from '../views'
@@ -20,11 +21,29 @@ const PostPage = ({ data: { mdx: post } }) => {
 
 	useEffect(() => viewChangeHandler(setView), [])
 
-	const { image, imageAlt, category, tags, created, updated, language } =
-		post.frontmatter
+	const {
+		image,
+		imageAlt,
+		category,
+		tags,
+		created,
+		updated,
+		language,
+		title,
+		description,
+		slug,
+	} = post.frontmatter
 
 	return (
 		<Layout view={view}>
+			<SEO
+				isBlogPost
+				title={`CoderMark | ${title}`}
+				description={description}
+				url={slug}
+				image={getImage(image).images.fallback.src}
+				datePublished={created}
+			/>
 			<GatsbyImage
 				className={style.postImage}
 				style={{ marginTop: rhythm(2) }}
@@ -118,6 +137,7 @@ export const pageQuery = graphql`
 				description
 				published
 				language
+				slug
 			}
 			body
 			timeToRead
