@@ -5,7 +5,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 import { rhythm, scale } from '../typography'
-import * as style from './postPage.module.css'
 import views from '../views'
 import viewChangeHandler from '../helpers/viewChangeHandler'
 import Label, { labelTypes } from '../components/label'
@@ -15,11 +14,16 @@ import {
 	faPen,
 	faRocket,
 } from '@fortawesome/free-solid-svg-icons'
+import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
+import * as style from './postPage.module.css'
 
 const PostPage = ({ data: { mdx: post } }) => {
 	const [view, setView] = useState(views.DESKTOP)
 
-	useEffect(() => viewChangeHandler(setView), [])
+	useEffect(() => {
+		deckDeckGoHighlightElement()
+		viewChangeHandler(setView)
+	}, [])
 
 	const {
 		image,

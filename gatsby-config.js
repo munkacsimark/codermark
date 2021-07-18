@@ -70,6 +70,15 @@ module.exports = {
 			resolve: 'gatsby-plugin-mdx',
 			options: {
 				remarkPlugins: [a11yEmoji],
+				gatsbyRemarkPlugins: [
+					{
+						resolve: `gatsby-remark-highlight-code`,
+						options: {
+							terminal: 'carbon',
+							theme: 'one-dark',
+						},
+					},
+				],
 			},
 		},
 		'gatsby-plugin-sharp',
