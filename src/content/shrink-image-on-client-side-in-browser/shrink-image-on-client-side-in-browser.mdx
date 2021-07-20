@@ -1,0 +1,45 @@
+---
+slug: /shrink-image-on-client-side-in-browser
+created: 2020-11-06
+language: us
+title: Shrink image on client side in browser
+description: We needed to handle file uploads properly on the frontend. I know it's not a client side stuff to handle images, without proper library, but that was the requirement, and hey, it's an interesting task!🤔
+category: development
+tags: ['coding', 'javascript']
+image: './lake-and-hills-at-sunset.jpg'
+imageAlt: Meow
+---
+
+# Shrink image on client side in browser
+
+## The problem
+
+We needed to handle file uploads properly on the frontend. I know it's not a client side stuff to handle images, without proper library, but that was the requirement, and hey, it's an interesting task!🤔
+
+So the exact problem was, how can I downsize the image to a given filesize (let's say 1MB). The steps are not a compicated ones, just need to render the selected image, then check it's size. If it's bigger than 1MB we need to shrink it by some pixels, then check it's size again, and do this recursion until it's size matches to our requirement (<= 1MB).
+
+I will provide the code with a working example at the end in one piece, maybe in this way have more sense like showing it in chunks. So if you just need to copy it and go, scroll down.😀
+
+## First steps - HTMLImageElement
+
+I started to looking for web APIs how can they help me. That was clear I need to use [image element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) to handle images in memory. Sounds good at first try, I can get width and height of the image, these will be crucial to calculate the ratio. Also I know the size of the uploaded file, since [File](https://developer.mozilla.org/en-US/docs/Web/API/File) have this property. The next problem is, if it's too big, I need to shrink it.
+
+## Digging into - Canvas
+
+To shrink a given file I will need to use the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). Using canvas's **2D context** I can render the shrinked image by decrease it's dimensions. I will need to keep the ratio here. After rendering, I can get rendered image again from canvas as File, and I will be able to tell it's size and (after creating an Image from it) it's dimensions as well, to shrink it again if it's needed.
+
+## Performance
+
+This process isn't optimal, but as I mentioned, on client side we don't have proper tools or libraries to handle operations with images. There is two thing to increase the performance, one of them is **downsizing step**. It affects the number of iterations, so the bigger is the better, but if it's too big it might affect efficienty. The second one is the **calling of** this **function**. Since it's returning a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) you can handle multiple processes paralelly with `Promise.all()` but I recomend to do it in serial way. In the next section I will tell you why...
+
+## The iOS Safari bug
+
+There is a bug which showed up when I tested the code on iOS. It said me: `Total canvas memory use exceeds the maximum limit (224 MB)`. Apple allows to use only `WKWebView`, which means you can use other browsers on platform than Safari, but they uses the same engine, so maybe this issue affects not just Safari but the whole platform. TLDR: there is a [garbage collection](<https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)>) issue with [WebKit](https://en.wikipedia.org/wiki/WebKit) that causes memory limit exceeding. Here is the issue about it: [https://bugs.webkit.org/show_bug.cgi?id=195325](https://bugs.webkit.org/show_bug.cgi?id=195325). The workaround was here to use only one canvas element and just update it in every recursion, it makes code harder to understand, but in this way I can avoid memory leak.
+
+## Final words
+
+I tested the code only in Firefox on Desktop and in Safari on mobile with ~7MB images. Maybe it isn't bulletproof and its a bit slow, but that is the best what we can do on frontend. I always recommend to handle images on server side and just check file limits on client side.
+
+## And finally here comes the code.🙃
+
+https://codesandbox.io/s/shrink-image-process-ivfb2

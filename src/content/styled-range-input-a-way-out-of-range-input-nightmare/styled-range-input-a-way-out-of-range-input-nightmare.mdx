@@ -1,0 +1,100 @@
+---
+slug: /styled-range-input-a-way-out-of-range-input-nightmare
+created: 2020-04-01
+updated: 2020-04-21
+language: us
+title: Styled Range Input - A way out of Range Input nightmare
+description: Did you ever faced with range inputs? They are really simple, right? But what if you need to create custom styled range input? Here comes the pain.
+category: development
+tags: ['coding', 'javascript', 'ui']
+image: './codes.jpg'
+imageAlt: Codes
+---
+
+# Styled Range Input - A way out of Range Input nightmare
+
+Did you ever faced with [range inputs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range)? They are really simple, right? You can pass `min` and `max`, perhaps step as you can see below.
+
+```html
+<input type="range" min="100" max="200" step="10" />
+```
+
+But what if you need to create custom styled range input? Here comes the pain.
+
+## ⬇️ tldr; if you just want the code, scroll down.
+
+So, the range input have three parts. And if you want to implement it for yourself, probably you will use the same three parts as `<div>`s with a plenty of JavaScript magic, mouse event handling and calculating the value out of relative sizes and positions.
+
+Trackbar, Progressbar, Thumb.
+
+There are a lot of articles in the wild about styling range inputs. Maybe the most comprehensive articles about this topic are from 2017.
+
+- [https://css-tricks.com/sliding-nightmare-understanding-range-input/](https://css-tricks.com/sliding-nightmare-understanding-range-input/)
+- [https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/)
+
+So we have the three parts, let's start with Thumb. It's a simple button-like draggable thingie. Unfortunately we need to use different prefixes like in old times for browser compatibility.
+
+```css
+input[type='range']::-webkit-slider-thumb {
+	/* Styles for Chrome */
+}
+input[type='range']::-moz-range-thumb {
+	/* Styles for Firefox */
+}
+input[type='range']::-ms-thumb {
+	/* Styles for IE */
+}
+```
+
+The following can be the Trackbar which is the range what Thumb can slide on. Here we have another three pseudo elements for browsers.
+
+```css
+input[type='range']::-webkit-slider-runnable-track {
+	/* Styles for Chrome */
+}
+input[type='range']::-moz-range-track {
+	/* Styles for Firefox */
+}
+input[type='range']::-ms-track {
+	/* Styles for IE */
+}
+```
+
+Great, but can we create a Progressbar for it? Sure, let's see following:
+
+```css
+input[type='range']::-moz-range-progress {
+	/* Styles for Firefox */
+}
+input[type='range']::-ms-fill-lower {
+	/* Styles for IE */
+}
+/* Styles for Chrome... ¯\_(ツ)_/¯ */
+```
+
+Yep, that's all folks, Chrome don't have styling for Progressbar. Although you can implement a moderately ugly workaround using CSS `[calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)` function, which is well supported in modern browsers. Besides CSS you will need some JS magic. The sad news are, [pseudo elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) can't be reached from JavaScript, but you can set [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) with it. Let's see the magic. You need to change only WebKit related styles of Trackbar.
+
+```css
+input[type='range'] {
+	--webkitProgressPercent: 0%;
+}
+input[type='range']::-webkit-slider-runnable-track {
+	background-image: linear-gradient(
+		90deg,
+		#f2f2f2 var(--webkitProgressPercent),
+		#262626 var(--webkitProgressPercent)
+	);
+}
+```
+
+Now you only need to attach the `--webkitProgressPercent` variable to Thumb's position. Here you will need to listen to some mouse events to achieve the native functionality. Rather I will attach here a working example which includes JS functionality.
+
+https://codepen.io/munkacsimark/pen/WNvmdZP
+
+I created a React component for this issue as well.
+
+https://codesandbox.io/s/react-styled-range-input-component-jl0cr
+
+PS, I didn't tested it in IE, only in Chrome and Firefox.
+
+Now you are out of Range Input nightmare!😁
