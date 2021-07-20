@@ -55,6 +55,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 				alt={imageAlt}
 			/>
 			<article
+				lang={language}
 				className={style.article}
 				style={{
 					padding: `${rhythm(1)} ${rhythm(view === views.MOBILE ? 0.5 : 2)}`,
@@ -95,6 +96,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 							style={{
 								...scale(-1 / 5),
 								padding: `0 ${rhythm(0.2)}`,
+								margin: `0 ${rhythm(0.3)} ${rhythm(0.3)} 0`,
 							}}
 						/>
 						{tags.map(tag => (
@@ -105,7 +107,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 								style={{
 									...scale(-1 / 5),
 									padding: `0 ${rhythm(0.2)}`,
-									marginLeft: rhythm(0.3),
+									margin: `0 ${rhythm(0.3)} ${rhythm(0.3)} 0`,
 								}}
 							/>
 						))}

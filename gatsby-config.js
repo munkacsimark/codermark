@@ -72,10 +72,22 @@ module.exports = {
 				remarkPlugins: [a11yEmoji],
 				gatsbyRemarkPlugins: [
 					{
+						resolve: `gatsby-remark-external-links`,
+					},
+					{
+						resolve: `gatsby-remark-embedder`,
+					},
+					{
 						resolve: `gatsby-remark-highlight-code`,
 						options: {
 							terminal: 'carbon',
 							theme: 'one-dark',
+						},
+					},
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 640,
 						},
 					},
 				],

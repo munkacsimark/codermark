@@ -6,7 +6,15 @@
 .footer {
 	width: 100%;
 	z-index: 1;
-	color: var(--dark-gray);
+	color: var(--white);
 	text-align: center;
 	background-color: var(--black-50);
+}
+.footer a {
+	color: var(--blue);
+	text-decoration: none;
+	transition: 0.2s;
+}
+.footer a:hover {
+	color: var(--light-blue);
 }

@@ -114,9 +114,9 @@ const PostBox = ({ postData, viewType }) => {
 							padding: `0 ${rhythm(0.5)}`,
 							marginBottom: rhythm(0.5),
 						}}
-						dateTime={created}>
+						dateTime={updated}>
 						<FontAwesomeIcon icon={faPen} />{' '}
-						{new Date(created).toLocaleDateString(language)}
+						{new Date(updated).toLocaleDateString(language)}
 					</time>
 				)}
 			</div>
