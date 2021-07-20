@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
+import Particles from 'react-tsparticles'
 import BigTitle from '../components/bigTitle'
 import { rhythm, scale } from '../typography'
 import { socialItems } from '../components/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import viewChangeHandler from '../helpers/viewChangeHandler'
 import views from '../views'
+import particlesConfig from '../../particles.json'
 import * as style from './me.module.css'
+import { values } from 'lodash'
 
 const IndexPage = () => {
 	const [view, setView] = useState(views.DESKTOP)
@@ -15,12 +18,13 @@ const IndexPage = () => {
 	useEffect(() => viewChangeHandler(setView), [])
 
 	return (
-		<Layout view={view}>
+		<Layout view={view} disableBackground>
 			<Seo
 				title='CoderMark | About'
 				description="Hey there! I'm Mark Munkacsi. Briefly about myself."
 				url='/me'
 			/>
+			<Particles id='tsparticles' options={particlesConfig} />
 			<BigTitle
 				view={view}
 				style={{
