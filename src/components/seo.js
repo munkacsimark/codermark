@@ -72,7 +72,7 @@ const Seo = ({ title, description, url, image, isBlogPost, datePublished }) => {
 		<>
 			<Helmet>
 				{/* General tags */}
-				<title>{title}</title>
+				<title>{`CoderMark | ${title}`}</title>
 				<meta name='description' content={description} />
 				{image ? <meta name='image' content={`${BASE_URL}${image}`} /> : null}
 

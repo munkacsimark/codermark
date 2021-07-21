@@ -22,7 +22,7 @@ const Index = ({
 		<>
 			<Layout view={view}>
 				<Seo
-					title='CoderMark | Blog home'
+					title='Blog home'
 					description="Check Mark Munkacsi's posts about frontend, coding, tech and everyday stuff."
 					url=''
 				/>

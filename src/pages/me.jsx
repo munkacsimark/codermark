@@ -17,7 +17,7 @@ const IndexPage = () => {
 	return (
 		<Layout view={view}>
 			<Seo
-				title='CoderMark | About'
+				title='About'
 				description="Hey there! I'm Mark Munkacsi. Briefly about myself."
 				url='/me'
 			/>

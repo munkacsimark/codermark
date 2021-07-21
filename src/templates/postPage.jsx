@@ -42,7 +42,7 @@ const PostPage = ({ data: { mdx: post } }) => {
 		<Layout view={view}>
 			<Seo
 				isBlogPost
-				title={`CoderMark | ${title}`}
+				title={title}
 				description={description}
 				url={slug}
 				image={getImage(image).images.fallback.src}

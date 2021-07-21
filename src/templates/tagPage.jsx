@@ -24,7 +24,7 @@ const TagPage = ({
 		<>
 			<Layout view={view}>
 				<Seo
-					title={`CoderMark | Posts with "${tag}" tag.`}
+					title={`Posts with "${tag}" tag.`}
 					description={`Check the list of Mark Munkacsi's posts with "${tag}" tag.`}
 					url={`/tag/${tag}`}
 				/>

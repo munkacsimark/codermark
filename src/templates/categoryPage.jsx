@@ -24,7 +24,7 @@ const CategoryPage = ({
 		<>
 			<Layout view={view}>
 				<Seo
-					title={`CoderMark | Posts in "${category}" category`}
+					title={`Posts in "${category}" category`}
 					description={`Check the list of Mark Munkacsi's posts in "${category}" category.`}
 					url={`/category/${category}`}
 				/>
