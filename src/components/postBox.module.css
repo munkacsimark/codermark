@@ -44,9 +44,6 @@
 .title a {
 	color: var(--black);
 }
-.title a:hover {
-	text-decoration: none;
-}
 .timeHolder {
 	display: flex;
 	flex-wrap: wrap;

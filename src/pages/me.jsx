@@ -34,16 +34,25 @@ const IndexPage = () => {
 						view === views.MOBILE ? rhythm(1) : rhythm(2)
 					}`,
 				}}>
-				<h3 style={{ ...scale(4 / 5) }}>Hi there! My name is Mark Munkacsi.</h3>
+				<h3 style={{ ...scale(4 / 5) }}>
+					Hi there!{' '}
+					<span role='img' aria-label='waving hand'>
+						👋
+					</span>{' '}
+					My name is Mark.
+				</h3>
 				<p style={{ ...scale(2 / 5) }}>
-					I'm a passionate developer, who is always learning and looking for new
-					challenges. I started my career as a UI designer & sitebuilder so I
-					have good design sense and I can understand and collaborate easily
-					with designers. Currently I'm working as a frontend developer with
-					more than 6 years of experience. My strengths are plain
-					JavaScript(ES6+) and client side apps(SPAs) written in frameworks like
-					React or Vue. When it's reasonable I like to work with TypeScript. I
-					have experience with WebExtensions as well.
+					I am an experienced{' '}
+					<span className={style.purple}>frontend developer</span> building
+					performant client side apps designed for humans. I'm mostly working
+					with modern JavaScript tools like{' '}
+					<span className={style.blue}>React</span>,{' '}
+					<span className={style.blue}>Vue</span> and{' '}
+					<span className={style.blue}>Svelte</span>. Or just write plain
+					JavaScript code like an animal.{' '}
+					<span role='img' aria-label='cat'>
+						🐈
+					</span>
 				</p>
 				<div className={style.socialBox} style={{ marginTop: rhythm(1) }}>
 					{socialItems.map(({ title, url, icon }) => (

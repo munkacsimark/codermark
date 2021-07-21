@@ -1,9 +1,8 @@
 .aboutBox {
-	max-width: var(--maxContentWidth);
+	max-width: 600px;
 	background-color: var(--black-75);
 	border-radius: 6px;
 	color: var(--white);
-	font-weight: 200;
 }
 .socialBox {
 	display: flex;
@@ -20,4 +19,10 @@
 }
 .socialIcon:first-child {
 	margin-left: 0 !important;
+}
+.blue {
+	color: var(--blue);
+}
+.purple {
+	color: var(--purple);
 }

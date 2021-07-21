@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import {
 	faGithub,
 	faInstagram,
+	faLinkedin,
 	faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -29,13 +30,18 @@ const socialItems = [
 	},
 	{
 		title: 'Instagram',
-		url: 'https://www.instagram.com/_codermark',
+		url: 'https://instagram.com/munkacsimark',
 		icon: faInstagram,
 	},
 	{
 		title: 'Twitter',
 		url: 'https://twitter.com/munkacsimark',
 		icon: faTwitter,
+	},
+	{
+		title: 'LinkedIn',
+		url: 'https://linkedin.com/in/munkacsimark',
+		icon: faLinkedin,
 	},
 	{
 		title: 'Email',
