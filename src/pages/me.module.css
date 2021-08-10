@@ -26,6 +26,9 @@
 .purple {
 	color: var(--purple);
 }
+.notStrong {
+	font-weight: inherit;
+}
 .resumeButton {
 	display: block;
 	width: fit-content;

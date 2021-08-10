@@ -45,13 +45,24 @@ const IndexPage = () => {
 				</h3>
 				<p style={{ ...scale(2 / 5) }}>
 					I am an experienced{' '}
-					<span className={style.purple}>frontend developer</span> building
-					performant client side apps designed for humans. I'm mostly working
-					with modern JavaScript tools like{' '}
-					<span className={style.blue}>React</span>,{' '}
-					<span className={style.blue}>Vue</span> and{' '}
-					<span className={style.blue}>Svelte</span>. Or just write plain
-					JavaScript code like an animal.{' '}
+					<strong className={`${style.purple} ${style.notStrong}`}>
+						frontend developer
+					</strong>{' '}
+					building performant client side apps designed for humans. I'm mostly
+					working with modern JavaScript tools and frameworks like{' '}
+					<strong className={`${style.blue} ${style.notStrong}`}>
+						TypeScript
+					</strong>
+					,{' '}
+					<strong className={`${style.blue} ${style.notStrong}`}>React</strong>,{' '}
+					<strong className={`${style.blue} ${style.notStrong}`}>Vue</strong>{' '}
+					and{' '}
+					<strong className={`${style.blue} ${style.notStrong}`}>Svelte</strong>
+					. Or just write plain{' '}
+					<strong className={`${style.blue} ${style.notStrong}`}>
+						JavaScript
+					</strong>{' '}
+					code like an animal.{' '}
 					<span role='img' aria-label='cat'>
 						🐈
 					</span>
