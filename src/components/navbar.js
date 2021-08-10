@@ -4,6 +4,7 @@ import {
 	faGithub,
 	faInstagram,
 	faLinkedin,
+	faTelegramPlane,
 	faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -42,6 +43,11 @@ const socialItems = [
 		title: 'LinkedIn',
 		url: 'https://linkedin.com/in/munkacsimark',
 		icon: faLinkedin,
+	},
+	{
+		title: 'Telegram',
+		url: 'https://t.me/markmunkacsi',
+		icon: faTelegramPlane,
 	},
 	{
 		title: 'Email',
