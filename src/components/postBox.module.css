@@ -1,24 +1,34 @@
 .postBox {
-	background-color: var(--white);
-	border-radius: 6px;
 	flex-grow: 0;
 	flex-shrink: 1;
 	min-width: 310px;
 	width: 100%;
 	height: max-content;
-	box-shadow: 0 1px 2px var(--black-75);
 }
 .postHeader {
 	position: relative;
+	border-radius: 6px 6px 0 0;
+}
+.postContent {
+	background-color: var(--white);
+	border-radius: 0 0 6px 6px;
 }
 .imageContainer {
 	display: flex;
 	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 .image {
 	border-radius: 6px 6px 0 0;
 	width: 100%;
 	height: 100%;
+}
+.metaContainer {
+	position: relative;
+	z-index: 1;
 }
 .language {
 	position: absolute;
@@ -31,11 +41,12 @@
 	border-radius: 50%;
 	user-select: none;
 	cursor: default;
+	top: 0;
+	right: 0;
 }
 .labelsContainer {
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
+	display: flex;
+	flex-direction: column;
 }
 .tagContainer {
 	display: flex;
@@ -58,4 +69,16 @@
 	height: 1px;
 	background-color: var(--gray);
 	width: 100%;
+}
+.readButton {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+	border: 1px solid var(--black);
+	border-radius: 6px;
+	background-color: transparent;
+	color: var(--black);
+}
+.readButton:hover {
+	text-decoration: none;
 }
