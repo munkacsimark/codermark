@@ -9,6 +9,8 @@ import viewChangeHandler from '../helpers/viewChangeHandler'
 import views from '../views'
 import * as style from './me.module.css'
 
+import resumeSrc from '../munkacsi_mark_resume_2021.pdf'
+
 const IndexPage = () => {
 	const [view, setView] = useState(views.DESKTOP)
 
@@ -53,6 +55,18 @@ const IndexPage = () => {
 					<span role='img' aria-label='cat'>
 						🐈
 					</span>
+					<a
+						style={{
+							...scale(1 / 8),
+							margin: `${rhythm(1)} auto`,
+							padding: `${rhythm(0.25)} ${rhythm(1)}`,
+						}}
+						href={resumeSrc}
+						rel='noreferrer noopener'
+						target='_blank'
+						className={style.resumeButton}>
+						Check my resume
+					</a>
 				</p>
 				<div className={style.socialBox} style={{ marginTop: rhythm(1) }}>
 					{socialItems.map(({ title, url, icon }) => (

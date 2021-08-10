@@ -26,3 +26,17 @@
 .purple {
 	color: var(--purple);
 }
+.resumeButton {
+	display: block;
+	width: fit-content;
+	border: 2px solid var(--white);
+	border-radius: 6px;
+	background-color: transparent;
+	color: var(--white);
+	transition: 0.2s;
+}
+.resumeButton:hover {
+	text-decoration: none;
+	color: var(--light-purple);
+	border-color: var(--light-blue);
+}
