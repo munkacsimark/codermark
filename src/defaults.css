@@ -1,0 +1,18 @@
+::selection {
+  background: var(--color-white);
+  color: var(--color-black);
+  -webkit-text-fill-color: var(--color-black);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  margin: 0;
+  padding: 0;
+}

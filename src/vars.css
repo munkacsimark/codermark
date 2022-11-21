@@ -1,16 +1,8 @@
 :root {
-	--white: #fff;
-	--gray: #ececec;
-	--purple: #884b89;
-	--light-purple: #c272c4;
-	--black: #202020;
-	--full-black: #000;
-	--blue: #75a4a2;
-	--light-blue: #28b4af;
-
-	--black-50: rgba(20, 20, 20, 0.5);
-	--black-75: rgba(20, 20, 20, 0.75);
-
-	--maxWidth: 1440px;
-	--maxContentWidth: 900px;
+  --color-white: #fff;
+  --color-black: #0b0b0b;
+  --color-gray: #a1a1a6;
+  --color-purple: #be22ff;
+  --color-pink: #ff279c;
+  --color-orange: #ff981f;
 }

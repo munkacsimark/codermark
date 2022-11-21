@@ -1,6 +1,0 @@
-.postContainer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	max-width: var(--maxWidth);
-}
