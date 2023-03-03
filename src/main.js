@@ -9,7 +9,12 @@ const setVh = () => {
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 };
 
+const calcExperience = () => new Date(Date.now()).getFullYear() - 2014;
+
 const main = async () => {
+  // set year of experience
+  document.getElementById("year-of-experience").textContent = calcExperience();
+
   // fix vh
   window.addEventListener("resize", setVh);
   setVh();
