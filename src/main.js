@@ -32,6 +32,7 @@ const main = async () => {
         random: true,
         value: { min: 0.2, max: 3 },
       },
+      number: { value: 100 },
     },
   });
 };
