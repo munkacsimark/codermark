@@ -9,6 +9,19 @@ const setVh = () => {
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 };
 
+const injectAnalytics = () => {
+  const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
+  if (!umamiWebsiteId) {
+    return;
+  }
+
+  const umamiScript = document.createElement("script");
+  umamiScript.src = "https://analytics.umami.is/script.js";
+  umamiScript.async = true;
+  umamiScript.setAttribute("data-website-id", umamiWebsiteId);
+  document.head.appendChild(umamiScript);
+};
+
 const main = async () => {
   // fix vh
   window.addEventListener("resize", setVh);
@@ -35,6 +48,8 @@ const main = async () => {
       number: { value: 100 },
     },
   });
+
+  injectAnalytics();
 };
 
 main();
