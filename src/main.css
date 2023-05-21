@@ -1,8 +1,8 @@
-@import "./vars.css";
-@import "./defaults.css";
-@import "./animations.css";
+@import "./styles/vars.css";
+@import "./styles/defaults.css";
+@import "./styles/animations.css";
 
-body {
+#app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,41 +12,7 @@ body {
   min-width: 100vw;
 }
 
-main {
-  justify-content: center;
-  font-weight: 600;
-  line-height: 1.125;
-  letter-spacing: 0.004em;
-  color: var(--color-gray);
-  margin: auto;
-  padding-right: calc(env(safe-area-inset-right) + 3rem);
-  padding-left: calc(env(safe-area-inset-left) + 3rem);
-  z-index: 1;
-}
-
-.main-box {
-  font-size: 21px;
-  max-width: 30rem;
-  z-index: 1;
-}
-
-h1 {
-  font-size: 64px;
-  margin: 0;
-}
-
-h2 {
-  font-size: 48px;
-  margin: 0 0 2rem 0;
-}
-
-h1,
-h2,
-.strong {
-  color: var(--color-white);
-}
-
-.gradient {
+.gradientText {
   background: linear-gradient(
     320deg,
     var(--color-purple) 20%,
@@ -54,75 +20,6 @@ h2,
     var(--color-orange) 80%
   );
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 3rem 0;
-}
-
-.icon {
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.5rem;
-  transform: scale(1);
-  transition: 0.1s;
-}
-
-.icon:hover img {
-  animation: 3s wobble linear;
-}
-
-.icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-footer {
-  color: #a1a1a6;
-  font-size: 12px;
-  margin-bottom: 1rem;
-  padding: 0 3rem;
-  text-align: center;
-  z-index: 1;
-}
-
-@media (max-width: 769px), (max-height: 769px) {
-  main {
-    padding-right: calc(env(safe-area-inset-right) + 1.5rem);
-    padding-left: calc(env(safe-area-inset-left) + 1.5rem);
-  }
-
-  .main-box {
-    font-size: 16px;
-  }
-
-  h1 {
-    font-size: 48px;
-  }
-
-  h2 {
-    font-size: 40px;
-    margin-bottom: 1.2rem;
-  }
-
-  .icons {
-    margin-top: 1.2rem;
-  }
-
-  .icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  footer {
-    font-size: 9px;
-    margin-bottom: 0.5rem;
-    padding: 0 1.5rem;
-  }
 }
