@@ -16,7 +16,6 @@ const currentYear = new Date(Date.now()).getFullYear();
   margin-bottom: 1rem;
   padding: 0 3rem;
   text-align: center;
-  z-index: 1;
 }
 
 @media (max-width: 769px), (max-height: 769px) {

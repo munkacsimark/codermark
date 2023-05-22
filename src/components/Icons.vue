@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 import type { IconProps } from "./Icon.vue";
-import resumeIcon from "../../assets/resume-icon.svg";
-import gitHubIcon from "../../assets/github-logo.svg";
-import twitterIcon from "../../assets/twitter-logo.svg";
-import telegramIcon from "../../assets/telegram-logo.svg";
-import devToIcon from "../../assets/devto-logo.svg";
-import stackOverflowIcon from "../../assets/stackoverflow-logo.svg";
-import resumeFile from "../../assets/mark_munkacsi_resume_2023.pdf";
+import resumeIcon from "../assets/resume-icon.svg";
+import gitHubIcon from "../assets/github-logo.svg";
+import twitterIcon from "../assets/twitter-logo.svg";
+import telegramIcon from "../assets/telegram-logo.svg";
+import devToIcon from "../assets/devto-logo.svg";
+import stackOverflowIcon from "../assets/stackoverflow-logo.svg";
+import resumeFile from "../assets/mark_munkacsi_resume_2023.pdf";
 
 const icons: IconProps[] = [
   {
