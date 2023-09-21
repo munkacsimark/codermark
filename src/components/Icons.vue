@@ -3,7 +3,7 @@ import Icon from "./Icon.vue";
 import type { IconProps } from "./Icon.vue";
 import resumeIcon from "../assets/resume-icon.svg";
 import gitHubIcon from "../assets/github-logo.svg";
-import twitterIcon from "../assets/twitter-logo.svg";
+import xIcon from "../assets/x-logo.svg";
 import telegramIcon from "../assets/telegram-logo.svg";
 import devToIcon from "../assets/devto-logo.svg";
 import stackOverflowIcon from "../assets/stackoverflow-logo.svg";
@@ -21,9 +21,9 @@ const icons: IconProps[] = [
     iconUrl: gitHubIcon,
   },
   {
-    title: "Twitter",
-    href: "https://twitter.com/0xMarkcius",
-    iconUrl: twitterIcon,
+    title: "X",
+    href: "https://x.com/0xMarkcius",
+    iconUrl: xIcon,
   },
   {
     title: "Telegram",
