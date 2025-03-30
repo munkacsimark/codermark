@@ -7,7 +7,7 @@ import xIcon from "../assets/x-logo.svg";
 import telegramIcon from "../assets/telegram-logo.svg";
 import devToIcon from "../assets/devto-logo.svg";
 import stackOverflowIcon from "../assets/stackoverflow-logo.svg";
-import resumeFile from "../assets/mark_munkacsi_resume_2023.pdf";
+import resumeFile from "../assets/mark_munkacsi_resume_2025.pdf";
 
 const icons: IconProps[] = [
   {
